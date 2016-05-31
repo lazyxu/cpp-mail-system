@@ -1,13 +1,13 @@
+```
 基本完成了普通文本中英文的收发邮件，但是网页模式的还没搞定，好像挺麻烦的orz
 编码方式不统一真是神烦
 
 linux,mac os下用liconv转换编码
 需要加上 other link flags: -liconv
-
 http://stackoverflow.com/questions/30127910/os-x-compile-error-ld-symbols-not-found-for-architecture-x86-64
 
 windows下用api转换编码
-```
+
 From: =?UTF-8?B?572R5piT5omL5py65Y+356CB6YKu566x?= <phone@service.netease.com>
 Sender: phone@service.netease.com
 To: 17816862370@163.com
