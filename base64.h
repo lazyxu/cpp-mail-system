@@ -10,5 +10,6 @@
 
 char *base64_encode(const char *input);
 char *base64_decode(const char *lpSrc, unsigned long sLen);
+char *quoted_printable_decode(const char *lpSrc, unsigned long sLen);
 
 #endif /* BASE64_H_ */

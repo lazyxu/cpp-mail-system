@@ -66,6 +66,41 @@ char GetCharIndex(char c) //内联函数可以省去函数调用过程，提速
     return 0;
 }
 
+char charToHex(char c)
+{
+    if (c>='0' && c<='9') {
+        return c-'0';
+    }
+    else if (c>='A' && c<='Z') {
+        return c-'A'+10;
+    }
+    else if (c>='a' && c<='z') {
+        return c-'a'+10;
+    }
+    return 0;
+}
+
+char *quoted_printable_decode(const char *lpSrc, unsigned long len)
+{
+    char *lpDes=new char[len];
+    int sLen = 0;
+    int dLen = 0;
+    while(dLen <= len) {
+        if (lpSrc[sLen] != '=') {
+            lpDes[dLen++] = lpSrc[sLen++];
+        }
+        else if (lpSrc[sLen+1]=='\r' && lpSrc[sLen+2]=='\n') {
+            sLen++;
+            lpDes[dLen++] = lpSrc[sLen++];
+            lpDes[dLen++] = lpSrc[sLen++];
+        }
+        else{
+            lpDes[dLen++] = (charToHex(lpSrc[sLen+1])<<4) + charToHex(lpSrc[sLen+2]);
+            sLen += 3;
+        }
+    }
+    return lpDes;
+}
 char *base64_decode(const char *lpSrc, unsigned long sLen)   //解码函数
 {   static char lpCode[4];
     char *lpString=new char[sLen/4*3+1];

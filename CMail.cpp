@@ -220,7 +220,7 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
 {
     size_t start, end;
     string from, to, title, content, Date;
-    
+    char from_charset[10]="utf-8";
     start = revMailContent.find("From: ", 0);
     if (start!=-1) {
         start += 6;
@@ -275,14 +275,59 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
         Date = revMailContent.substr(start+6, end-start-6);
     }
     
-    start = revMailContent.find("Content-Type: text/plain;", 0);
-    if (start!=-1) {
-        start = revMailContent.find("Content-Transfer-Encoding: base64", start);
-        start = revMailContent.find("\r\n\r\n", start);
-        start += 4;
-        end = revMailContent.find("\r\n", start);
-        content = revMailContent.substr(start, end-start);
-        content = base64_decode(content.c_str(), content.length());
+    bool flag = false;
+    if ((end=revMailContent.find("Content-Type: text/plain;", 0))!=-1) {
+        start = end + 25;
+        flag = true;
+    }
+    else if ((end=revMailContent.find("Content-Type: text/html;", 0))!=-1) {
+        start = end + 24;
+        flag = true;
+    }
+    if (flag == true) {
+        if ((end=revMailContent.find("charset=GBK", start))!=-1) {
+            start = end + 11;
+            from_charset[0]=0;
+            strcpy(from_charset,"gbk");
+        }
+        else if ((end=revMailContent.find("charset=\"gb18030\"", start))!=-1) {
+            start = end + 17;
+            from_charset[0]=0;
+            strcpy(from_charset,"gb18030");
+        }
+        if ((end=revMailContent.find("Content-Transfer-Encoding: base64", start))!=-1) {
+            start = end + 33;
+            start = revMailContent.find("\r\n\r\n", start);
+            start += 4;
+            end = revMailContent.find("\r\n", start);
+            content = revMailContent.substr(start, end-start);
+            content = base64_decode(content.c_str(), content.length());
+        }
+        else if ((end=revMailContent.find("Content-Transfer-Encoding: base64", start))!=-1) {
+            start = end + 33;
+            start = revMailContent.find("\r\n\r\n", start);
+            start += 4;
+            end = revMailContent.find("\r\n", start);
+            content = revMailContent.substr(start, end-start);
+            content = base64_decode(content.c_str(), content.length());
+        }
+        else if ((end=revMailContent.find("Content-Transfer-Encoding: quoted-printable", start))!=-1) {
+            start = end + 33;
+            start = revMailContent.find("\r\n\r\n", start);
+            start += 4;
+            end = revMailContent.find("\r\n.\r\n", start);
+            content = revMailContent.substr(start, end-start);
+            content = string(quoted_printable_decode(content.c_str(), content.length()));
+        }
+        
+        if (strcmp(from_charset, "utf-8")!=0) {
+            char *temp = (char *)malloc(sizeof(char)*content.length());
+            strcpy(temp, content.c_str());
+            char *temp1 = (char *)malloc(sizeof(char)*content.length()*2);
+            codingConvert(temp, strlen(temp), temp1, content.length()*2, from_charset, "utf-8");
+            content = temp1;
+            content += "转码似乎有点问题，暂时解决不了orz";
+        }
     }
     else {
         
@@ -383,7 +428,7 @@ bool CMail::ReceiveMail(bool IsDebug)
             revMailContent += recv;
             //std::cout << recv << endl;
         }
-        std::cout << revMailContent << endl << "[" << len << "/" << mail_rev[i] + 3 << "]" << endl;
+        //std::cout << revMailContent << endl << "[" << len << "/" << mail_rev[i] + 3 << "]" << endl;
         getMailInfo(revMail[i-1], revMailContent, mail_rev[i] + 3);
         cout << endl << "mail " << i << ":" << endl;
         revMail[i-1].showMail();
