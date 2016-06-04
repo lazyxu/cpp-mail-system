@@ -8,10 +8,8 @@ linux,mac os下用liconv转换编码
 create_qt_xcode_project.sh需要修改下qmake路径
 新建工程qt_xcode工程：  ./create_qt_xcode_project.sh 工程名
 
-http://stackoverflow.com/questions/30127910/os-x-compile-error-ld-symbols-not-found-for-architecture-x86-64
-
 windows下用api转换编码
-```
+
 From: =?UTF-8?B?572R5piT5omL5py65Y+356CB6YKu566x?= <phone@service.netease.com>
 Sender: phone@service.netease.com
 To: 17816862370@163.com
@@ -58,8 +56,4 @@ From: "=?gb18030?B?TWV0ZW9y?=" <1051814353@qq.com>
 To: "=?gb18030?B?cTEwNTE4MTQzNTM=?=" <q1051814353@163.com>
 Subject: =?gb18030?B?xOPKx3Niw7Q=?=
 Date: Mon, 30 May 2016 00:23:55 +0800
-<<<<<<< HEAD
 ```
-=======
-```
->>>>>>> origin/master
