@@ -31,20 +31,39 @@ string mail::info()
 string mail::fullInfo()
 {
     string ret;
-    if (from.c_str()[0]!=0)
-        ret += "发件人："+ from + "\n";
-    if (to.c_str()[0]!=0)
-        ret += "收件人："+ to + "\n";;
-    if (Date.c_str()[0]!=0)
-        ret += "日期："+ Date + "\n";
-    if (title.c_str()[0]!=0)
-        ret += "标题："+ title + "\n";
-    if (content.c_str()[0]!=0)
-        ret += "正文：\n" + content + "\n";
+    if (type.compare("text/html")==0) {
+        if (from.c_str()[0]!=0)
+            ret += "发件人："+ from + "<br>";
+        if (to.c_str()[0]!=0)
+            ret += "收件人："+ to + "<br>";;
+        if (Date.c_str()[0]!=0)
+            ret += "日期："+ Date + "<br>";
+        if (title.c_str()[0]!=0)
+            ret += "标题："+ title + "<br>";
+        if (content.c_str()[0]!=0)
+            ret += "正文：<br>" + content + "<br>";
+    }
+    else {
+        if (from.c_str()[0]!=0)
+            ret += "发件人："+ from + "\n";
+        if (to.c_str()[0]!=0)
+            ret += "收件人："+ to + "\n";;
+        if (Date.c_str()[0]!=0)
+            ret += "日期："+ Date + "\n";
+        if (title.c_str()[0]!=0)
+            ret += "标题："+ title + "\n";
+        if (content.c_str()[0]!=0)
+            ret += "正文：\n" + content + "\n";
+    }
     return ret;
 }
 
-void mail::setMail(string from, string to, string title, string content, string Date, long size)
+string mail::getType()
+{
+    return type;
+}
+
+void mail::setMail(string from, string to, string title, string content, string Date, string type, long size)
 {
     if (from.c_str()[0]!=0)
         this->from = from;
@@ -56,6 +75,7 @@ void mail::setMail(string from, string to, string title, string content, string 
         this->to = to;
     if (content.c_str()[0]!=0)
         this->content = content;
+    this->type = type;
     this->size = size;
 }
 

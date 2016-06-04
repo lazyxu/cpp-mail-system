@@ -53,11 +53,18 @@ void smtpConnect(bool IsDebug)
 
 int main(int argc, char *argv[])
 {
+//    long n;
+//    bool IsDebug = true;
+//    pop3 pop3Test("pop3.163.com", "qqq1051814353@163.com", "qqq1051814353");
+//    if ( pop3Test.LoginPop3(IsDebug) )
+//        pop3Test.ReceiveMail(IsDebug, n);
+    
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
     MainWindow_2 w_2;
     QObject::connect(&w,SIGNAL(loginSuccessful()),&w_2,SLOT(init()));
+    QObject::connect(&w,SIGNAL(loginSuccessful()),&w,SLOT(close()));
     return a.exec();
     
 //    int choice;

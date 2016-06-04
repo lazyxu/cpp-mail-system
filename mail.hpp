@@ -16,7 +16,8 @@ public:
     mail();
     string info();
     string fullInfo();
-    void setMail(string from, string to, string title, string content, string Date, long size);
+    string getType();
+    void setMail(string from, string to, string title, string content, string Date, string type, long size);
     void showMail();
 private:
     string from;
@@ -24,6 +25,7 @@ private:
     string title;
     string content;
     string Date;
+    string type;
     long size;
 };
 #endif /* mail_hpp */

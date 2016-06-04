@@ -1,14 +1,27 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <iostream>
+#include "QMessageBox"
 void MainWindow::loginCheck()
 {
     std::cout << "checking...\n";
-    QString username = ui->username->accessibleName();
-    QString password = ui->password->accessibleName();
-    if( username.compare("admin") && password.compare("admin") )
+    if( ui->username->text() == tr("admin") &&
+       ui->password->text() == tr("admin") ) {
         std::cout << "login successful!\n";
-    emit loginSuccessful();
+        emit loginSuccessful();
+    }
+    else {
+        QMessageBox::warning(this, tr("Waring"),
+                             tr("user name or password error!"),
+                             QMessageBox::Yes);
+    }
+}
+
+void MainWindow::close()
+{
+    std::cout << "close...\n";
+    this->show();
+    MainWindow::~MainWindow();
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -16,6 +29,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
     {
         ui->setupUi(this);
+        ui->username->setFocus();
+        ui->username->setText("admin");
+        ui->password->setText("admin");
     //    this->image = new QImage();
     //    image->load("./images/login.png");
     //    QGraphicsScene *scene = new QGraphicsScene;

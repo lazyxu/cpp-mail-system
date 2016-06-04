@@ -75,7 +75,7 @@ dependencies: /Users/meteor/Desktop/qt_xcode_project/mainwindow_2.cpp \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qkeysequence.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qicon.h \
-  ui_mainwindow_2.h \
+  mail.hpp ui_mainwindow_2.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/QVariant \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qvariant.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/qmap.h \
@@ -131,4 +131,4 @@ dependencies: /Users/meteor/Desktop/qt_xcode_project/mainwindow_2.cpp \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qpen.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/qurl.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-  pop3.h Sock.h Transcoding.hpp mail.hpp
+  pop3.h Sock.h Transcoding.hpp

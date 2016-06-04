@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "getMailInfo(mail&amp;, std::string, long):pop3.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "from.c_str()">
+            </PersistentString>
+            <PersistentString
+               value = "from.length()">
+            </PersistentString>
+            <PersistentString
+               value = "revMailContent.substr(start, end-start).c_str()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

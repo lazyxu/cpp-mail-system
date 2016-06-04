@@ -18,6 +18,7 @@ signals:
     void loginSuccessful();
 private slots:
     void loginCheck();
+    void close();
 private:
     Ui::MainWindow *ui;
     QImage *image;

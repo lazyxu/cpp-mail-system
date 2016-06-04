@@ -29,7 +29,7 @@ public:
     QWidget *centralwidget;
     QListWidget *revMail_list;
     QPushButton *revMail_button;
-    QTextBrowser *textBrowser;
+    QTextBrowser *revMail_text;
     QPushButton *writeMail_button;
     QMenuBar *menubar;
 
@@ -57,9 +57,9 @@ public:
         icon.addFile(QStringLiteral("../images/revMail.png"), QSize(), QIcon::Normal, QIcon::On);
         revMail_button->setIcon(icon);
         revMail_button->setIconSize(QSize(34, 17));
-        textBrowser = new QTextBrowser(centralwidget);
-        textBrowser->setObjectName(QStringLiteral("textBrowser"));
-        textBrowser->setGeometry(QRect(260, 60, 751, 671));
+        revMail_text = new QTextBrowser(centralwidget);
+        revMail_text->setObjectName(QStringLiteral("revMail_text"));
+        revMail_text->setGeometry(QRect(260, 60, 751, 671));
         writeMail_button = new QPushButton(centralwidget);
         writeMail_button->setObjectName(QStringLiteral("writeMail_button"));
         writeMail_button->setGeometry(QRect(60, 30, 34, 17));
@@ -81,7 +81,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow_2)
     {
-        MainWindow_2->setWindowTitle(QApplication::translate("MainWindow_2", "MainWindow", 0));
+        MainWindow_2->setWindowTitle(QApplication::translate("MainWindow_2", "cpp mail system", 0));
         revMail_button->setText(QString());
         writeMail_button->setText(QString());
     } // retranslateUi

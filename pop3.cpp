@@ -161,6 +161,14 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
             start = revMailContent.find("<", start);
             from += " ";
         }
+        else if ((end=revMailContent.find("=?gb18030?B?", start))!=(size_t)-1) {
+            start = end + 13;
+            end = revMailContent.find("\?=", start);
+            from = revMailContent.substr(start, end-start);
+            from = base64_decode(from.c_str(), from.length());
+            start = revMailContent.find("<", start);
+            from += " ";
+        }
         end = revMailContent.find("\r\n", start);
         from += revMailContent.substr(start, end-start);
     }
@@ -196,13 +204,16 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
     }
     
     bool flag = false;
+    string type;
     if ((end=revMailContent.find("Content-Type: text/plain;", 0))!=(size_t)-1) {
         start = end + 25;
         flag = true;
+        type = "text/plain";
     }
     else if ((end=revMailContent.find("Content-Type: text/html;", 0))!=(size_t)-1) {
         start = end + 24;
         flag = true;
+        type = "text/html";
     }
     if (flag == true) {
         if ((end=revMailContent.find("charset=GBK", start))!=(size_t)-1) {
@@ -237,7 +248,7 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
             start += 4;
             end = revMailContent.find("\r\n.\r\n", start);
             content = revMailContent.substr(start, end-start);
-            content = string(quoted_printable_decode(content.c_str(), content.length()));
+            content = string((char *)quoted_printable_decode(content.c_str(), content.length()));
         }
         
         if (strcmp(from_charset, "utf-8")!=0) {
@@ -246,7 +257,6 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
             char *temp1 = (char *)malloc(sizeof(char)*content.length()*2);
             codingConvert(temp, strlen(temp), temp1, content.length()*2, from_charset, "utf-8");
             content = temp1;
-            content += "转码似乎有点问题，暂时解决不了orz";
         }
     }
     else {
@@ -285,7 +295,7 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
         }
     }
     
-    revMail.setMail(from, to, title, content, Date, size);
+    revMail.setMail(from, to, title, content, Date, type, size);
 }
 
 mail *pop3::ReceiveMail(bool IsDebug, long &n)

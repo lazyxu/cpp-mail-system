@@ -2,6 +2,7 @@
 #define MAINWINDOW_2_H
 
 #include <QMainWindow>
+#include "mail.hpp"
 
 namespace Ui {
 class MainWindow_2;
@@ -20,8 +21,10 @@ private slots:
     void init();
     void revMail();
     void writeMail();
+    void showRevMail();
 private:
     Ui::MainWindow_2 *ui;
+    mail *mailRev;
 };
 
 #endif // MAINWINDOW_2_H

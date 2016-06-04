@@ -76,7 +76,7 @@ else if(c == '=')
     return 0;
 }
 
-char charToHex(char c)
+unsigned char charToHex(char c)
 {
     if (c>='0' && c<='9') {
         return c-'0';
@@ -87,30 +87,35 @@ char charToHex(char c)
     else if (c>='a' && c<='z') {
         return c-'a'+10;
     }
-    return 0;
+    return -1;
 }
 
-char *quoted_printable_decode(const char *lpSrc, unsigned long len)
+unsigned char *quoted_printable_decode(const char *lpSrc, unsigned long len)
 {
-    char *lpDes=new char[len];
+    unsigned char *lpDes=new unsigned char[len];
     unsigned long sLen = 0;
     unsigned long dLen = 0;
     while(dLen <= len) {
         if (lpSrc[sLen] != '=') {
             lpDes[dLen++] = lpSrc[sLen++];
         }
-        else if (lpSrc[sLen+1]=='\r' && lpSrc[sLen+2]=='\n') {
-            sLen++;
-            lpDes[dLen++] = lpSrc[sLen++];
-            lpDes[dLen++] = lpSrc[sLen++];
+        else if (strncmp(lpSrc+sLen, "=\r\n", 3) == 0) {//lpSrc[sLen+1]=='\r' && lpSrc[sLen+2]=='\n'
+            sLen += 3;
         }
         else{
-            lpDes[dLen++] = (charToHex(lpSrc[sLen+1])<<4) + charToHex(lpSrc[sLen+2]);
-            sLen += 3;
+            if (charToHex(lpSrc[sLen+2])==(unsigned char)-1) {
+                lpDes[dLen++] = (charToHex(lpSrc[sLen+1])<<4) + charToHex(lpSrc[sLen+3]);
+                sLen += 4;
+            }
+            else {
+                lpDes[dLen++] = (charToHex(lpSrc[sLen+1])<<4) + charToHex(lpSrc[sLen+2]);
+                sLen += 3;
+            }
         }
     }
     return lpDes;
 }
+
 char *base64_decode(const char *lpSrc, unsigned long sLen)   //解码函数
 {   static char lpCode[4];
     char *lpString=new char[sLen/4*3+1];
