@@ -14,6 +14,8 @@ class mail
 {
 public:
     mail();
+    string info();
+    string fullInfo();
     void setMail(string from, string to, string title, string content, string Date, long size);
     void showMail();
 private:

@@ -16,6 +16,34 @@ mail::mail(){
     this->size = 0;
 }
 
+string mail::info()
+{
+    string ret;
+    if (from.c_str()[0]!=0)
+        ret += from + "\n";
+    if (Date.c_str()[0]!=0)
+        ret += Date + "\n";
+    if (title.c_str()[0]!=0)
+        ret += title + "\n";
+    return ret;
+}
+
+string mail::fullInfo()
+{
+    string ret;
+    if (from.c_str()[0]!=0)
+        ret += "发件人："+ from + "\n";
+    if (to.c_str()[0]!=0)
+        ret += "收件人："+ to + "\n";;
+    if (Date.c_str()[0]!=0)
+        ret += "日期："+ Date + "\n";
+    if (title.c_str()[0]!=0)
+        ret += "标题："+ title + "\n";
+    if (content.c_str()[0]!=0)
+        ret += "正文：\n" + content + "\n";
+    return ret;
+}
+
 void mail::setMail(string from, string to, string title, string content, string Date, long size)
 {
     if (from.c_str()[0]!=0)

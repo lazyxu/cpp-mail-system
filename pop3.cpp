@@ -1,118 +1,38 @@
-/*  CMail.cpp
+/*  pop3.cpp
  *
  *  Created on: 2016年5月9日
  *      Author: Meteor
  */
 
-#include "CMail.h"
+#include "pop3.h"
 
-CMail::CMail(string smtp, string pop3, string address, string password)
+pop3::pop3(string pop3, string address, string password)
 {
-	strSmtp = smtp;
 	strPop3 = pop3;
 	strMailAddress = address;
 	strMailPassword = password;
 }
-bool CMail::LoginMail(bool IsDebug)
+bool pop3::LoginPop3(bool IsDebug)
 {
-	if ( IsDebug ) std::cout<< strSmtp.c_str();
-	int smtpPort = 25;//smtp协议专用端口
-	if(sockSendMail.Connect(strSmtp.c_str(), smtpPort) == false)
-		return false;
-	sockSendMail.recv_socket();
-	if ( IsDebug ) if ( IsDebug ) std::cout<< "Client : connected! \nServer :"
-	<< sockSendMail.get_recvbuf() <<std::endl;
-
-	/*EHLO指令是必须首先发的，相当于和服务器说hello*/
-	sockSendMail.send_socket("EHLO hello\r\n");//hello可以被替换为其它字符串
-	sockSendMail.recv_socket();
-	if ( IsDebug ) std::cout<< "Client : send helo \nServer :"
-	<<sockSendMail.get_recvbuf() << std::endl;
-
-	/*发送 auth login 指令，告诉服务器要登录邮箱*/
-	sockSendMail.send_socket("auth login\r\n");
-	sockSendMail.recv_socket();
-	if ( IsDebug ) std::cout<< "Client : send auth login \nServer :"
-	<<sockSendMail.get_recvbuf() << std::endl;
-
-	/*告诉服务器要登录后，接着就是把用户名发过去了.
-	 不过这个用户名是经过了base64编码的，smtp也支持
-	 明文传送，至于具体有什么区别上网上找资料看看就知道了*/
-	if ( IsDebug ) std::cout<< base64_encode(strMailAddress.c_str());
-	sockSendMail.send_socket(base64_encode(strMailAddress.c_str()));//经过base64编码后的邮箱用户名
-	sockSendMail.send_socket("\r\n");
-	sockSendMail.recv_socket();
-	if ( IsDebug ) std::cout<< "Client : send name \nServer :"
-	<<sockSendMail.get_recvbuf() << std::endl;
-
-	/*用户名发过去后接着就是用户密码了，当然也是经过base64编码后的*/
-	if ( IsDebug ) std::cout<< base64_encode(strMailPassword.c_str());
-	sockSendMail.send_socket(base64_encode(strMailPassword.c_str()));// 授权码 "cTEwNTE4MTQzNTM="
-	sockSendMail.send_socket("\r\n");
-	sockSendMail.recv_socket();
-	if ( IsDebug ) std::cout<< "Client : send password \nServer :"
-	<<sockSendMail.get_recvbuf() << std::endl;
-
-
-
-	if ( IsDebug ) std::cout<< strPop3.c_str();
+    if ( IsDebug ) std::cout<< strPop3.c_str();
 	int pop3Port = 110;//pop3协议专用端口
 	if(sockReceiveMail.Connect(strPop3.c_str(), pop3Port) == false)
 		return false;
-	std::cout << "connected\n";
+	if (IsDebug) std::cout << "connected\n";
 	sockReceiveMail.recv_socket();
-	std::cout << "Client:connect successfully! \nServer:"
+	if (IsDebug) std::cout << "Client:connect successfully! \nServer:"
 		<< sockReceiveMail.get_recvbuf() << std::endl;
 
 	sockReceiveMail.send_socket("user q1051814353@163.com\r\n");//输入邮箱用户名
 	sockReceiveMail.recv_socket();
-	std::cout << "Client : send name \nServer:"
+	if (IsDebug) std::cout << "Client : send name \nServer:"
 	   << sockReceiveMail.get_recvbuf() << std::endl;
 
 	sockReceiveMail.send_socket("pass q1051814353\r\n");//邮箱密码
 	sockReceiveMail.recv_socket();
-	std::cout << "Client : send password \n Server ："
+	if (IsDebug) std::cout << "Client : send password \n Server ："
 		<< sockReceiveMail.get_recvbuf() << std::endl;
 	return true;
-}
-
-bool CMail::SendMail(string strFromName, string strToMailAddress, string strTitle, string strContent, bool IsDebug)
-{
-	/*发送 mail from 指令，相当于填写发件人*/
-    sockSendMail.send_socket(( string("MAIL FROM: <")+strMailAddress+string(">") ).c_str());
-    sockSendMail.send_socket("\r\n");
-    sockSendMail.recv_socket();
-    if ( IsDebug ) std::cout<< "Client: send mail from \nServer :"
-    <<sockSendMail.get_recvbuf() << std::endl;
-
-    /*发送 rcpt to 指令，就是填写收件人了 */
-    sockSendMail.send_socket(( string("RCPT TO: <")+strToMailAddress+string(">") ).c_str());
-    sockSendMail.send_socket("\r\n");
-    sockSendMail.recv_socket();
-    if ( IsDebug ) std::cout<< "Client : send rcpt to \nServer"
-    <<sockSendMail.get_recvbuf() << std::endl;
-
-    /*发送data,标志着后面开始发送邮件的主题部分*/
-    sockSendMail.send_socket("data\r\n");
-    sockSendMail.recv_socket();
-    if ( IsDebug ) std::cout<< "Client : send data \nServer :"
-    <<sockSendMail.get_recvbuf() << std::endl;
-    /*发送邮件主体部分，先是邮件主题（subject）,后面是邮件内容。
-     下面就是发送主体的格式*/
-    sockSendMail.send_socket(( string("From: ")+strFromName+string("\r\n") ).c_str());
-    sockSendMail.send_socket(( string("To: ")+strToMailAddress+string("\r\n") ).c_str());
-    sockSendMail.send_socket(( string("Subject: ")+strTitle+string("\r\n\r\n") ).c_str());
-    sockSendMail.send_socket(( strContent+string("\r\n \r\n") ).c_str());
-    sockSendMail.send_socket(".\r\n");
-    sockSendMail.recv_socket();
-    if ( IsDebug ) std::cout<< "Client : send content \nServer :"
-    << sockSendMail.get_recvbuf() <<std::endl;
-
-    sockSendMail.send_socket("quit\r\n");
-    sockSendMail.recv_socket();
-    if ( IsDebug ) std::cout<< "Client : send quit \nServer :"
-    << sockSendMail.get_recvbuf() <<std::endl;
-    return true;
 }
 
 char *reverse(char *s)
@@ -222,10 +142,10 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
     string from, to, title, content, Date;
     char from_charset[10]="utf-8";
     start = revMailContent.find("From: ", 0);
-    if (start!=-1) {
+    if (start!=(size_t)-1) {
         start += 6;
         from = "";
-        if ((end=revMailContent.find("=\?UTF-8\?B\?", start))!=-1) {
+        if ((end=revMailContent.find("=\?UTF-8\?B\?", start))!=(size_t)-1) {
             start = end + 10;
             end = revMailContent.find("\?=", start);
             from = revMailContent.substr(start, end-start);
@@ -233,7 +153,7 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
             start = revMailContent.find("<", start);
             from += " ";
         }
-        else if ((end=revMailContent.find("=\?gb18030\?B\?", start))!=-1) {
+        else if ((end=revMailContent.find("=\?gb18030\?B\?", start))!=(size_t)-1) {
             start = end + 13;
             end = revMailContent.find("\?=", start);
             from = revMailContent.substr(start, end-start);
@@ -246,10 +166,10 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
     }
     
     start = revMailContent.find("To: ", 0);
-    if (start!=-1) {
+    if (start!=(size_t)-1) {
         start += 4;
         to = "";
-        if ((end=revMailContent.find("=\?UTF-8\?B\?", start))!=-1) {
+        if ((end=revMailContent.find("=\?UTF-8\?B\?", start))!=(size_t)-1) {
             start = end + 10;
             end = revMailContent.find("\?=", start);
             to = revMailContent.substr(start, end-start);
@@ -257,7 +177,7 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
             start = revMailContent.find("<", start);
             to += " ";
         }
-        else if ((end=revMailContent.find("=\?gb18030\?B\?", start))!=-1) {
+        else if ((end=revMailContent.find("=\?gb18030\?B\?", start))!=(size_t)-1) {
             start = end + 12;            //=?gb18030?B?
             end = revMailContent.find("\?=", start);
             to = revMailContent.substr(start, end-start);
@@ -270,32 +190,32 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
     }
     
     start = revMailContent.find("Date: ", 0);
-    if (start!=-1) {
+    if (start!=(size_t)-1) {
         end = revMailContent.find("\r\n", start);
         Date = revMailContent.substr(start+6, end-start-6);
     }
     
     bool flag = false;
-    if ((end=revMailContent.find("Content-Type: text/plain;", 0))!=-1) {
+    if ((end=revMailContent.find("Content-Type: text/plain;", 0))!=(size_t)-1) {
         start = end + 25;
         flag = true;
     }
-    else if ((end=revMailContent.find("Content-Type: text/html;", 0))!=-1) {
+    else if ((end=revMailContent.find("Content-Type: text/html;", 0))!=(size_t)-1) {
         start = end + 24;
         flag = true;
     }
     if (flag == true) {
-        if ((end=revMailContent.find("charset=GBK", start))!=-1) {
+        if ((end=revMailContent.find("charset=GBK", start))!=(size_t)-1) {
             start = end + 11;
             from_charset[0]=0;
             strcpy(from_charset,"gbk");
         }
-        else if ((end=revMailContent.find("charset=\"gb18030\"", start))!=-1) {
+        else if ((end=revMailContent.find("charset=\"gb18030\"", start))!=(size_t)-1) {
             start = end + 17;
             from_charset[0]=0;
             strcpy(from_charset,"gb18030");
         }
-        if ((end=revMailContent.find("Content-Transfer-Encoding: base64", start))!=-1) {
+        if ((end=revMailContent.find("Content-Transfer-Encoding: base64", start))!=(size_t)-1) {
             start = end + 33;
             start = revMailContent.find("\r\n\r\n", start);
             start += 4;
@@ -303,7 +223,7 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
             content = revMailContent.substr(start, end-start);
             content = base64_decode(content.c_str(), content.length());
         }
-        else if ((end=revMailContent.find("Content-Transfer-Encoding: base64", start))!=-1) {
+        else if ((end=revMailContent.find("Content-Transfer-Encoding: base64", start))!=(size_t)-1) {
             start = end + 33;
             start = revMailContent.find("\r\n\r\n", start);
             start += 4;
@@ -311,7 +231,7 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
             content = revMailContent.substr(start, end-start);
             content = base64_decode(content.c_str(), content.length());
         }
-        else if ((end=revMailContent.find("Content-Transfer-Encoding: quoted-printable", start))!=-1) {
+        else if ((end=revMailContent.find("Content-Transfer-Encoding: quoted-printable", start))!=(size_t)-1) {
             start = end + 33;
             start = revMailContent.find("\r\n\r\n", start);
             start += 4;
@@ -334,9 +254,9 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
     }
     
     start = revMailContent.find("Subject: ", 0);
-    if (start!=-1) {
+    if (start!=(size_t)-1) {
         start += 9;
-        if ((end=revMailContent.find("=\?GBK\?B\?", start))!=-1) {
+        if ((end=revMailContent.find("=\?GBK\?B\?", start))!=(size_t)-1) {
             start = end + 8;
             end = revMailContent.find("\?=", start);
             title = revMailContent.substr(start, end-start);
@@ -348,7 +268,7 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
             title = temp1;
             
         }
-        else if ((end=revMailContent.find("=\?gb18030\?B\?", start))!=-1) {
+        else if ((end=revMailContent.find("=\?gb18030\?B\?", start))!=(size_t)-1) {
             start = end + 12;
             end = revMailContent.find("\?=", start);
             title = revMailContent.substr(start, end-start);
@@ -368,18 +288,17 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
     revMail.setMail(from, to, title, content, Date, size);
 }
 
-bool CMail::ReceiveMail(bool IsDebug)
+mail *pop3::ReceiveMail(bool IsDebug, long &n)
 {
 	sockReceiveMail.send_socket("stat\r\n");
     sockReceiveMail.recv_socket();
-    std::cout << "Client : send stat \nServer : "
+    if (IsDebug) std::cout << "Client : send stat \nServer : "
         << sockReceiveMail.get_recvbuf() << std::endl;
 
     sockReceiveMail.send_socket("list\r\n");
     sockReceiveMail.recv_socket();
     const char *recv = sockReceiveMail.get_recvbuf();
-    std::cout << "Client : send list \nServer :"  << recv << std::endl;
-    long n = 0;
+    if (IsDebug) std::cout << "Client : send list \nServer :"  << recv << std::endl;
     long *mail_rev;
     mail_rev = list_to_array((char *)recv, n);
           //下面的while循环有些问题，目前还没有想到解决方法。以后改正！
@@ -391,12 +310,12 @@ bool CMail::ReceiveMail(bool IsDebug)
     for (i=1; i<=n; i++)
     {
     	stri=itoa(i);
-    	std::cout << "---------------------------------------------------------------------------";
-    	std::cout << ((string)"retr "+(string)stri+(string)"\r\n").c_str();
+    	if (IsDebug) std::cout << "---------------------------------------------------------------------------";
+    	if (IsDebug) std::cout << ((string)"retr "+(string)stri+(string)"\r\n").c_str();
     	sockReceiveMail.send_socket(((string)"retr "+(string)stri+(string)"\r\n").c_str());
         sockReceiveMail.recv_socket();
         const char *recv = sockReceiveMail.get_recvbuf();
-    	std::cout << "Client : " << ((string)"retr "+(string)stri+(string)"\r\n").c_str() <<
+    	if (IsDebug) std::cout << "Client : " << ((string)"retr "+(string)stri+(string)"\r\n").c_str() <<
                 "Server :" << recv  << endl;
 //        len = 0;
 //        while (len < mail_rev[i]) {
@@ -405,7 +324,7 @@ bool CMail::ReceiveMail(bool IsDebug)
 //            len = len + sockReceiveMail.recv_socket();
 //            cout << "->[" << len << "/" << mail_rev[i] << "]" ;
 //            recv = sockReceiveMail.get_recvbuf();
-//            std::cout << recv << endl;
+//            if (IsDebug) std::cout << recv << endl;
 //            //}while (!is_end(recv, len));
 //        }
 //        cout << "[" << len << "/" << mail_rev[i] << "]" ;
@@ -426,9 +345,9 @@ bool CMail::ReceiveMail(bool IsDebug)
             cout << "->[" << len << "/" << mail_rev[i] + 3 << "]" ;
             recv = sockReceiveMail.get_recvbuf();
             revMailContent += recv;
-            //std::cout << recv << endl;
+            //if (IsDebug) std::cout << recv << endl;
         }
-        //std::cout << revMailContent << endl << "[" << len << "/" << mail_rev[i] + 3 << "]" << endl;
+        //if (IsDebug) std::cout << revMailContent << endl << "[" << len << "/" << mail_rev[i] + 3 << "]" << endl;
         getMailInfo(revMail[i-1], revMailContent, mail_rev[i] + 3);
         cout << endl << "mail " << i << ":" << endl;
         revMail[i-1].showMail();
@@ -436,7 +355,7 @@ bool CMail::ReceiveMail(bool IsDebug)
     
     sockReceiveMail.send_socket("quit\r\n");
     sockReceiveMail.recv_socket();
-    std::cout << "Client : send quit \nServer :"
+    if (IsDebug) std::cout << "Client : send quit \nServer :"
            << sockReceiveMail.get_recvbuf() << std::endl;
-    return true;
+    return revMail;
 }

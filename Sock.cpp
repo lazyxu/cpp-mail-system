@@ -12,7 +12,6 @@ Sock::Sock()
     num = 0;
     hp = (struct hostent *) 0;
 	sock= socket(AF_INET, SOCK_STREAM, 0);
-    //fcntl(sock,F_SETFL,O_NONBLOCK);
     if(sock == -1)
     {
         throw std::runtime_error("socketinit error\n");
