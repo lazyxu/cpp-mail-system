@@ -13,13 +13,18 @@ void MainWindow_2::init()
 void MainWindow_2::revMail()
 {
     std::cout << "revMail...\n";
+    if (this->mailRev != NULL) {
+        delete[] this->mailRev;
+        this->mailRev = NULL;
+    }
     ui->revMail_list->clear();
-    long n = 0, i;
+    this->mailRevN = 0;
+    unsigned long i;
     bool IsDebug = true;
     pop3 pop3Test("pop3.163.com", "qqq1051814353@163.com", "qqq1051814353");
     if ( pop3Test.LoginPop3(IsDebug) )
-        this->mailRev = pop3Test.ReceiveMail(IsDebug, n);
-    for (i=0; i<n; i++) {
+        this->mailRev = pop3Test.ReceiveMail(IsDebug, this->mailRevN);
+    for (i=0; i<this->mailRevN; i++) {
         std::cout << QString(QString::fromLocal8Bit(this->mailRev[i].info().c_str())).toStdString();
         ui->revMail_list->addItem(QString(QString::fromLocal8Bit(this->mailRev[i].info().c_str())));
     }
@@ -28,7 +33,11 @@ void MainWindow_2::revMail()
 void MainWindow_2::showRevMail()
 {
     ui->revMail_text->clear();
-    mail currentMail = this->mailRev[ui->revMail_list->currentRow()];
+    unsigned long n = ui->revMail_list->currentRow();
+    if ( n >= this->mailRevN ) {
+        return;
+    }
+    mail currentMail = this->mailRev[n];
     if (currentMail.getType().compare("text/html")==0 ) {
 //        QUrl url;
 //        url.setUrl("http://mimg.126.net");
@@ -50,6 +59,7 @@ MainWindow_2::MainWindow_2(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow_2)
     {
+        this->mailRev = NULL;
         ui->setupUi(this);
         QFont font;
         font.setPointSize(9); // 设置字号

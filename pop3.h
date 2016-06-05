@@ -18,7 +18,7 @@ class pop3
 public:
 	pop3(string pop3="", string address="", string password="");
 	bool LoginPop3(bool IsDebug);
-	mail *ReceiveMail(bool IsDebug, long &n);
+	mail *ReceiveMail(bool IsDebug, unsigned long &n);
 private:
     string strMailAddress;//邮箱地址
     string strMailPassword;//邮箱密码

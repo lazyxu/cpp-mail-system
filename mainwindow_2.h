@@ -25,6 +25,7 @@ private slots:
 private:
     Ui::MainWindow_2 *ui;
     mail *mailRev;
+    unsigned long mailRevN;
 };
 
 #endif // MAINWINDOW_2_H

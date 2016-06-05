@@ -120,9 +120,10 @@ long get_long(char *str, int &i)
     return n;
 }
 
-long *list_to_array(char *str, long &n)
+long *list_to_array(char *str, unsigned long &n)
 {
-    int i = 0, j;
+    int i = 0;
+    unsigned long j;
     long *mail_size, index;
     n = get_long(str, i);
     printf("n:%ld i:%d ", n, i);
@@ -298,7 +299,7 @@ void getMailInfo(mail &revMail, string revMailContent, long size)
     revMail.setMail(from, to, title, content, Date, type, size);
 }
 
-mail *pop3::ReceiveMail(bool IsDebug, long &n)
+mail *pop3::ReceiveMail(bool IsDebug, unsigned long &n)
 {
 	sockReceiveMail.send_socket("stat\r\n");
     sockReceiveMail.recv_socket();
@@ -317,7 +318,7 @@ mail *pop3::ReceiveMail(bool IsDebug, long &n)
     long len;
     char *stri=new char[4];
     mail *revMail = new mail[n];
-    for (i=1; i<=n; i++)
+    for (i=1; i<=(int)n; i++)
     {
     	stri=itoa(i);
     	if (IsDebug) std::cout << "---------------------------------------------------------------------------";
