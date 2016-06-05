@@ -1,14 +1,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <iostream>
 #include "QMessageBox"
+#include "pop3.h"
+#include "smtp.h"
 void MainWindow::loginCheck()
 {
     std::cout << "checking...\n";
-    if( ui->username->text() == tr("admin") &&
-       ui->password->text() == tr("admin") ) {
+    bool IsDebug = true;
+    std::string account = ui->username->text().toStdString();
+    std::string password = ui->password->text().toStdString();
+    pop3 pop3Test("pop3.163.com", account, password);
+    smtp smtpTest("smtp.163.com", account, password);
+    if ( smtpTest.LoginSmtp(IsDebug)  && pop3Test.LoginPop3(IsDebug) ) {
         std::cout << "login successful!\n";
-        emit loginSuccessful();
+        emit loginSuccessful(account, password);
     }
     else {
         QMessageBox::warning(this, tr("Waring"),
@@ -30,8 +35,8 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         ui->setupUi(this);
         ui->username->setFocus();
-        ui->username->setText("admin");
-        ui->password->setText("admin");
+        ui->username->setText("qqq1051814353@163.com");
+        ui->password->setText("qqq1051814353");
     //    this->image = new QImage();
     //    image->load("./images/login.png");
     //    QGraphicsScene *scene = new QGraphicsScene;

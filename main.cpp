@@ -16,40 +16,10 @@
 #include <QLabel>
 #include "mainwindow.h"
 #include "mainwindow_2.h"
+#include "mainwindow_3.h"
 //#include "../qt_lib/QtWidgets.framework/Versions/5/Headers/QApplication"
 //#include "../qt_lib/QtWidgets.framework/Versions/5/Headers/QLabel"
 using namespace std;
-//
-//class A{
-//private:
-//    int i;
-//public:
-//    A(int ii=0):i(ii){};
-//    virtual void print()const;
-//    virtual ~A(){};
-//};
-//
-//class B:public A{
-//    char *p;
-//public:
-//    B(int i, char *p):A(i)
-//    {
-//        this->p = new char[strlen(p)+1];
-//        strcpy(this->p, p);
-//    }
-//    virtual void print() const;
-//    ~B()
-//    {
-//        delete p;
-//    }
-//};
-
-void smtpConnect(bool IsDebug)
-{
-    smtp smtpTest("smtp.163.com", "qqq1051814353@163.com", "qqq1051814353");
-    if ( smtpTest.LoginSmtp(IsDebug) )
-        smtpTest.SendMail("Meteor", "1051814353@qq.com", "Hello meteor", "My name is Meteor.", IsDebug);
-}
 
 int main(int argc, char *argv[])
 {
@@ -63,8 +33,10 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     MainWindow_2 w_2;
-    QObject::connect(&w,SIGNAL(loginSuccessful()),&w_2,SLOT(init()));
-    QObject::connect(&w,SIGNAL(loginSuccessful()),&w,SLOT(close()));
+    MainWindow_3 w_3;
+    QObject::connect(&w,SIGNAL(loginSuccessful(std::string, std::string)),&w_2,SLOT(init(std::string, std::string)));
+    QObject::connect(&w,SIGNAL(loginSuccessful(std::string, std::string)),&w,SLOT(close()));
+    QObject::connect(&w_2,SIGNAL(sWriteMail(std::string, std::string)),&w_3,SLOT(init(std::string, std::string)));
     return a.exec();
     
 //    int choice;

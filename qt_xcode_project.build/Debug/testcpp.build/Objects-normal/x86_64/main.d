@@ -89,4 +89,4 @@ dependencies: /Users/meteor/Desktop/qt_xcode_project/main.cpp smtp.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qicon.h \
-  mainwindow_2.h
+  mainwindow_2.h mainwindow_3.h

@@ -14,9 +14,9 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QWidget>
@@ -31,7 +31,7 @@ public:
     QPushButton *revMail_button;
     QTextBrowser *revMail_text;
     QPushButton *writeMail_button;
-    QMenuBar *menubar;
+    QLabel *account_label;
 
     void setupUi(QMainWindow *MainWindow_2)
     {
@@ -47,10 +47,10 @@ public:
         centralwidget->setMaximumSize(QSize(1024, 768));
         revMail_list = new QListWidget(centralwidget);
         revMail_list->setObjectName(QStringLiteral("revMail_list"));
-        revMail_list->setGeometry(QRect(10, 60, 241, 671));
+        revMail_list->setGeometry(QRect(10, 40, 241, 691));
         revMail_button = new QPushButton(centralwidget);
         revMail_button->setObjectName(QStringLiteral("revMail_button"));
-        revMail_button->setGeometry(QRect(10, 30, 34, 17));
+        revMail_button->setGeometry(QRect(10, 10, 34, 17));
         revMail_button->setLayoutDirection(Qt::LeftToRight);
         QIcon icon;
         icon.addFile(QStringLiteral("../images/revMail.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -59,20 +59,19 @@ public:
         revMail_button->setIconSize(QSize(34, 17));
         revMail_text = new QTextBrowser(centralwidget);
         revMail_text->setObjectName(QStringLiteral("revMail_text"));
-        revMail_text->setGeometry(QRect(260, 60, 751, 671));
+        revMail_text->setGeometry(QRect(260, 40, 751, 691));
         writeMail_button = new QPushButton(centralwidget);
         writeMail_button->setObjectName(QStringLiteral("writeMail_button"));
-        writeMail_button->setGeometry(QRect(60, 30, 34, 17));
+        writeMail_button->setGeometry(QRect(60, 10, 34, 17));
         QIcon icon1;
         icon1.addFile(QStringLiteral("../images/writeMail.png"), QSize(), QIcon::Normal, QIcon::Off);
         icon1.addFile(QStringLiteral("../images/writeMail.png"), QSize(), QIcon::Normal, QIcon::On);
         writeMail_button->setIcon(icon1);
         writeMail_button->setIconSize(QSize(34, 17));
+        account_label = new QLabel(centralwidget);
+        account_label->setObjectName(QStringLiteral("account_label"));
+        account_label->setGeometry(QRect(110, 10, 62, 16));
         MainWindow_2->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(MainWindow_2);
-        menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1024, 22));
-        MainWindow_2->setMenuBar(menubar);
 
         retranslateUi(MainWindow_2);
 
@@ -81,9 +80,10 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow_2)
     {
-        MainWindow_2->setWindowTitle(QApplication::translate("MainWindow_2", "cpp mail system", 0));
+        MainWindow_2->setWindowTitle(QApplication::translate("MainWindow_2", "MainWindow", 0));
         revMail_button->setText(QString());
         writeMail_button->setText(QString());
+        account_label->setText(QString());
     } // retranslateUi
 
 };

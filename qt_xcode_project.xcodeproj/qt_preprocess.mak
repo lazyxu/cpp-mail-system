@@ -31,32 +31,40 @@ mocables: compiler_moc_header_make_all compiler_moc_source_make_all
 
 check: first
 
-compilers: ./moc_mainwindow.cpp ./moc_mainwindow_2.cpp ./ui_mainwindow.h ./ui_mainwindow_2.h
+compilers: ./moc_mainwindow.cpp ./moc_mainwindow_2.cpp ./moc_mainwindow_3.cpp ./ui_mainwindow.h ./ui_mainwindow_2.h ./ui_mainwindow_3.h
 compiler_objective_c_make_all:
 compiler_objective_c_clean:
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_mainwindow_2.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_mainwindow_2.cpp moc_mainwindow_3.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_mainwindow_2.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_mainwindow_2.cpp moc_mainwindow_3.cpp
 moc_mainwindow.cpp: ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
 		mainwindow.h
 	/Users/meteor/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) mainwindow.h -o moc_mainwindow.cpp
 
 moc_mainwindow_2.cpp: ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
+		mail.hpp \
 		mainwindow_2.h
 	/Users/meteor/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) mainwindow_2.h -o moc_mainwindow_2.cpp
 
+moc_mainwindow_3.cpp: ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
+		mainwindow_3.h
+	/Users/meteor/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) mainwindow_3.h -o moc_mainwindow_3.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_mainwindow_2.h
+compiler_uic_make_all: ui_mainwindow.h ui_mainwindow_2.h ui_mainwindow_3.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_mainwindow_2.h
+	-$(DEL_FILE) ui_mainwindow.h ui_mainwindow_2.h ui_mainwindow_3.h
 ui_mainwindow.h: mainwindow.ui
 	/Users/meteor/Qt5.2.1/5.2.1/clang_64/bin/uic mainwindow.ui -o ui_mainwindow.h
 
 ui_mainwindow_2.h: mainwindow_2.ui
 	/Users/meteor/Qt5.2.1/5.2.1/clang_64/bin/uic mainwindow_2.ui -o ui_mainwindow_2.h
+
+ui_mainwindow_3.h: mainwindow_3.ui
+	/Users/meteor/Qt5.2.1/5.2.1/clang_64/bin/uic mainwindow_3.ui -o ui_mainwindow_3.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:

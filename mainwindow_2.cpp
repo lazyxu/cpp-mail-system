@@ -3,11 +3,13 @@
 #include <iostream>
 #include "pop3.h"
 
-void MainWindow_2::init()
+void MainWindow_2::init(std::string account, std::string password)
 {
     std::cout << "init...\n";
+    this->account = account;
+    this->password = password;
     this->show();
-    revMail();
+    //revMail();
 }
 
 void MainWindow_2::revMail()
@@ -21,7 +23,7 @@ void MainWindow_2::revMail()
     this->mailRevN = 0;
     unsigned long i;
     bool IsDebug = true;
-    pop3 pop3Test("pop3.163.com", "qqq1051814353@163.com", "qqq1051814353");
+    pop3 pop3Test("pop3.163.com", this->account, this->password);
     if ( pop3Test.LoginPop3(IsDebug) )
         this->mailRev = pop3Test.ReceiveMail(IsDebug, this->mailRevN);
     for (i=0; i<this->mailRevN; i++) {
@@ -52,7 +54,7 @@ void MainWindow_2::showRevMail()
 void MainWindow_2::writeMail()
 {
     std::cout << "writeMail...\n";
-    emit sWriteMail();
+    emit sWriteMail(account, password);
 }
 
 MainWindow_2::MainWindow_2(QWidget *parent) :
@@ -60,6 +62,7 @@ MainWindow_2::MainWindow_2(QWidget *parent) :
     ui(new Ui::MainWindow_2)
     {
         this->mailRev = NULL;
+        //ui->account_label->setText(QString(QString::fromLocal8Bit(this->account.c_str())));
         ui->setupUi(this);
         QFont font;
         font.setPointSize(9); // 设置字号

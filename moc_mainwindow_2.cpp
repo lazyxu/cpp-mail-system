@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_2_t {
-    QByteArrayData data[7];
-    char stringdata[61];
+    QByteArrayData data[10];
+    char stringdata[90];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,13 +32,17 @@ static const qt_meta_stringdata_MainWindow_2_t qt_meta_stringdata_MainWindow_2 =
 QT_MOC_LITERAL(0, 0, 12),
 QT_MOC_LITERAL(1, 13, 10),
 QT_MOC_LITERAL(2, 24, 0),
-QT_MOC_LITERAL(3, 25, 4),
-QT_MOC_LITERAL(4, 30, 7),
-QT_MOC_LITERAL(5, 38, 9),
-QT_MOC_LITERAL(6, 48, 11)
+QT_MOC_LITERAL(3, 25, 11),
+QT_MOC_LITERAL(4, 37, 7),
+QT_MOC_LITERAL(5, 45, 8),
+QT_MOC_LITERAL(6, 54, 4),
+QT_MOC_LITERAL(7, 59, 7),
+QT_MOC_LITERAL(8, 67, 9),
+QT_MOC_LITERAL(9, 77, 11)
     },
-    "MainWindow_2\0sWriteMail\0\0init\0revMail\0"
-    "writeMail\0showRevMail\0"
+    "MainWindow_2\0sWriteMail\0\0std::string\0"
+    "account\0password\0init\0revMail\0writeMail\0"
+    "showRevMail\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,19 +60,19 @@ static const uint qt_meta_data_MainWindow_2[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   39,    2, 0x06,
+       1,    2,   39,    2, 0x06,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   40,    2, 0x08,
-       4,    0,   41,    2, 0x08,
-       5,    0,   42,    2, 0x08,
-       6,    0,   43,    2, 0x08,
+       6,    2,   44,    2, 0x08,
+       7,    0,   49,    2, 0x08,
+       8,    0,   50,    2, 0x08,
+       9,    0,   51,    2, 0x08,
 
  // signals: parameters
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    4,    5,
 
  // slots: parameters
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    2,    2,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -81,8 +85,8 @@ void MainWindow_2::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     if (_c == QMetaObject::InvokeMetaMethod) {
         MainWindow_2 *_t = static_cast<MainWindow_2 *>(_o);
         switch (_id) {
-        case 0: _t->sWriteMail(); break;
-        case 1: _t->init(); break;
+        case 0: _t->sWriteMail((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
+        case 1: _t->init((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
         case 2: _t->revMail(); break;
         case 3: _t->writeMail(); break;
         case 4: _t->showRevMail(); break;
@@ -92,13 +96,12 @@ void MainWindow_2::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (MainWindow_2::*_t)();
+            typedef void (MainWindow_2::*_t)(std::string , std::string );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow_2::sWriteMail)) {
                 *result = 0;
             }
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject MainWindow_2::staticMetaObject = {
@@ -138,8 +141,9 @@ int MainWindow_2::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MainWindow_2::sWriteMail()
+void MainWindow_2::sWriteMail(std::string _t1, std::string _t2)
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, 0);
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

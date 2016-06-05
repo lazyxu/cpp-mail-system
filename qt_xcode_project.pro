@@ -15,6 +15,7 @@ Otherlinkerflags += -liconv
 SOURCES += main.cpp \
         mainwindow.cpp \
         mainwindow_2.cpp \
+        mainwindow_3.cpp \
         Transcoding.cpp \
         pop3.cpp \
         smtp.cpp \
@@ -24,6 +25,7 @@ SOURCES += main.cpp \
 HEADERS  += \
         mainwindow.h \
         mainwindow_2.h \
+        mainwindow_3.h \
         smtp.h \
         pop3.h \
         Transcoding.hpp \
@@ -32,8 +34,8 @@ HEADERS  += \
 
 FORMS    += \
         mainwindow.ui \
-        mainwindow_2.ui
+        mainwindow_2.ui \
+        mainwindow_3.ui
 
 OTHER_FILES += \
-        image/login.png \
         images/login.png

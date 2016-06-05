@@ -16,9 +16,9 @@ public:
     explicit MainWindow_2(QWidget *parent = 0);
     ~MainWindow_2();
 signals:
-    void sWriteMail();
+    void sWriteMail(std::string account, std::string password);
 private slots:
-    void init();
+    void init(std::string, std::string);
     void revMail();
     void writeMail();
     void showRevMail();
@@ -26,6 +26,8 @@ private:
     Ui::MainWindow_2 *ui;
     mail *mailRev;
     unsigned long mailRevN;
+    std::string account;
+    std::string password;
 };
 
 #endif // MAINWINDOW_2_H

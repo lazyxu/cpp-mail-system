@@ -23,6 +23,7 @@
 
 /* Begin PBXBuildFile section */
 		14475494DADFD4D034032C84 /* mainwindow.cpp in Compile Sources */ = {isa = PBXBuildFile; fileRef = 8D467E7358ADF4E3703F837B /* mainwindow.cpp */; settings = {ATTRIBUTES = (); }; };
+		2AB5848D27FDD3D720795B30 /* mainwindow_3.cpp in Compile Sources */ = {isa = PBXBuildFile; fileRef = 86003C802742FA05EA214CD4 /* mainwindow_3.cpp */; settings = {ATTRIBUTES = (); }; };
 		2D367B399AA57F7319FEA1FA /* main.cpp in Compile Sources */ = {isa = PBXBuildFile; fileRef = 682A50D19E416195436708E4 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
 		2F9983ACB124B74F32685F47 /* moc_mainwindow.cpp in Compile Sources */ = {isa = PBXBuildFile; fileRef = 721C1DE06B327393E3F7D7E1 /* moc_mainwindow.cpp */; settings = {ATTRIBUTES = (); }; };
 		479E3091AC20124A7DBDCD27 /* moc_mainwindow_2.cpp in Compile Sources */ = {isa = PBXBuildFile; fileRef = 5ED998C251DA1993B5D64456 /* moc_mainwindow_2.cpp */; settings = {ATTRIBUTES = (); }; };
@@ -36,11 +37,12 @@
 		DDB2D38278E4FB10468DC9AE /* pop3.cpp in Compile Sources */ = {isa = PBXBuildFile; fileRef = 378C7D30C918FF9DAC263399 /* pop3.cpp */; settings = {ATTRIBUTES = (); }; };
 		E236B77673CC859F2F6ED53C /* smtp.cpp in Compile Sources */ = {isa = PBXBuildFile; fileRef = 859D4E55A0C3410A717F017F /* smtp.cpp */; settings = {ATTRIBUTES = (); }; };
 		E32594FAA9B9BBD350D2739E /* mail.cpp in Compile Sources */ = {isa = PBXBuildFile; fileRef = ECC59AAE665DE5C1D28F6004 /* mail.cpp */; settings = {ATTRIBUTES = (); }; };
+		E41EE9B46F9EDDC939B77415 /* moc_mainwindow_3.cpp in Compile Sources */ = {isa = PBXBuildFile; fileRef = 2B52508672DA2BBAE73E7297 /* moc_mainwindow_3.cpp */; settings = {ATTRIBUTES = (); }; };
 		E45E51A644D5FC9F942ECE55 /* AGL.framework in Link Binary With Libraries */ = {isa = PBXBuildFile; fileRef = 8D9815BDB5BD9F90D2BC05C5 /* AGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		00C342601D02A9A800C2BA0C /* PBXContainerItemProxy */ = {
+		006F00661D041DF2005767C6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6DB9C3763D02B1415CD9D565 /* Project object */;
 			proxyType = 1;
@@ -61,7 +63,7 @@
 		112F8FAB0DC0FFDEB18BE80D /* ui_mainwindow_2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_mainwindow_2.h; sourceTree = "<absolute>"; };
 		1383AEEC11B8AB4513A3F9AC /* qt_lib_webkitwidgets_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_webkitwidgets_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_webkitwidgets_private.pri; sourceTree = "<absolute>"; };
 		13B305DD22DDE9AA0C3BA319 /* qt_lib_serialport.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_serialport.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_serialport.pri; sourceTree = "<absolute>"; };
-		14C9776A4B2E34DB51106724 /* ui_mainwindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ui_mainwindow.h; path = /Users/meteor/Desktop/qt_xcode_project/ui_mainwindow.h; sourceTree = "<absolute>"; };
+		14C9776A4B2E34DB51106724 /* ui_mainwindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_mainwindow.h; sourceTree = "<absolute>"; };
 		17B061465F496BFFDB7166E3 /* qt_lib_declarative_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_declarative_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_declarative_private.pri; sourceTree = "<absolute>"; };
 		1B403603E8577D731CB84D2C /* qdevice.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qdevice.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/qdevice.pri; sourceTree = "<absolute>"; };
 		1F9B01E0FCC51E7AE991885F /* qt_lib_scripttools.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_scripttools.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_scripttools.pri; sourceTree = "<absolute>"; };
@@ -70,6 +72,7 @@
 		229BBA69EAFF1E600BE44D89 /* pop3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pop3.h; sourceTree = "<absolute>"; };
 		22F4898815CA6B206DF0E4B5 /* qt_lib_positioning.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_positioning.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_positioning.pri; sourceTree = "<absolute>"; };
 		2A74E3FC85EF6E7AA721D611 /* qt_lib_gui_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_gui_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_gui_private.pri; sourceTree = "<absolute>"; };
+		2B52508672DA2BBAE73E7297 /* moc_mainwindow_3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_mainwindow_3.cpp; sourceTree = "<absolute>"; };
 		2F48A3A98BA6A8B7E277DF63 /* qt_lib_webkit_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_webkit_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_webkit_private.pri; sourceTree = "<absolute>"; };
 		30F63E9AB1442541CF7261D3 /* qt_lib_bootstrap_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_bootstrap_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri; sourceTree = "<absolute>"; };
 		378C7D30C918FF9DAC263399 /* pop3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pop3.cpp; sourceTree = "<absolute>"; };
@@ -79,7 +82,7 @@
 		3D9262AAFCC81B7E9BE813F2 /* qt_lib_printsupport.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_printsupport.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_printsupport.pri; sourceTree = "<absolute>"; };
 		3E499673895DE7E457F830A9 /* qt_lib_bluetooth_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_bluetooth_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri; sourceTree = "<absolute>"; };
 		424C0054FA808AC84FAF64EB /* qt_lib_core.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_core.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_core.pri; sourceTree = "<absolute>"; };
-		4479F30C5218C73018CD6430 /* mainwindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = mainwindow.h; path = /Users/meteor/Desktop/qt_xcode_project/mainwindow.h; sourceTree = "<absolute>"; };
+		4479F30C5218C73018CD6430 /* mainwindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mainwindow.h; sourceTree = "<absolute>"; };
 		493D53C40ACE7F39187281A2 /* qt_lib_concurrent_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_concurrent_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri; sourceTree = "<absolute>"; };
 		49DE1022729CC9A4977F1CBC /* qt_lib_xml.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_xml.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_xml.pri; sourceTree = "<absolute>"; };
 		4A4DAEA92FE953B483ECA69C /* qt_lib_qmltest.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_qmltest.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_qmltest.pri; sourceTree = "<absolute>"; };
@@ -87,7 +90,7 @@
 		4B69BED6F34FE2ED2A3E32D3 /* qt_lib_positioning_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_positioning_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_positioning_private.pri; sourceTree = "<absolute>"; };
 		55DC83E717E680DA59C67388 /* qt_lib_widgets_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_widgets_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_widgets_private.pri; sourceTree = "<absolute>"; };
 		57EE368B62E3DB54F03ACBC8 /* QtWidgets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtWidgets.framework; path = ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework; sourceTree = "<absolute>"; };
-		59342C100B758CDE10A0EA4D /* mainwindow.ui */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = mainwindow.ui; path = /Users/meteor/Desktop/qt_xcode_project/mainwindow.ui; sourceTree = "<absolute>"; };
+		59342C100B758CDE10A0EA4D /* mainwindow.ui */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainwindow.ui; sourceTree = "<absolute>"; };
 		59EF02706A6EA852D76C1B57 /* qt_lib_xmlpatterns.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_xmlpatterns.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri; sourceTree = "<absolute>"; };
 		5E03E64A25C98B9C0CE947C0 /* qt_lib_designercomponents_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_designercomponents_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri; sourceTree = "<absolute>"; };
 		5E3A532C41884F5E2A474C80 /* testcpp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testcpp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,7 +99,7 @@
 		61244F9891ECF1BB2EB1AFC1 /* qt_lib_designer.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_designer.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_designer.pri; sourceTree = "<absolute>"; };
 		674835B42DA54D5641B225DB /* qt_lib_qtmultimediaquicktools_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_qtmultimediaquicktools_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri; sourceTree = "<absolute>"; };
 		682A50D19E416195436708E4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<absolute>"; };
-		721C1DE06B327393E3F7D7E1 /* moc_mainwindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = moc_mainwindow.cpp; path = /Users/meteor/Desktop/qt_xcode_project/moc_mainwindow.cpp; sourceTree = "<absolute>"; };
+		721C1DE06B327393E3F7D7E1 /* moc_mainwindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_mainwindow.cpp; sourceTree = "<absolute>"; };
 		725923DB8A8207C15723ED7C /* qt_lib_opengl_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_opengl_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_opengl_private.pri; sourceTree = "<absolute>"; };
 		74EFBF92DD36BC738ED17284 /* qt_lib_multimediawidgets_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_multimediawidgets_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri; sourceTree = "<absolute>"; };
 		75A324D42FA30489134EC210 /* qt_lib_multimedia.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_multimedia.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_multimedia.pri; sourceTree = "<absolute>"; };
@@ -107,12 +110,13 @@
 		7E30D5E8267F02E22E2C7BE7 /* qt_lib_uitools_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_uitools_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_uitools_private.pri; sourceTree = "<absolute>"; };
 		82F4EFC7A89F4B0858CFD68B /* mainwindow_2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mainwindow_2.cpp; sourceTree = "<absolute>"; };
 		859D4E55A0C3410A717F017F /* smtp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = smtp.cpp; sourceTree = "<absolute>"; };
+		86003C802742FA05EA214CD4 /* mainwindow_3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mainwindow_3.cpp; sourceTree = "<absolute>"; };
 		88CE708320D25CF3AC2794C0 /* shell-unix.conf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "shell-unix.conf"; path = "../../Qt5.2.1/5.2.1/clang_64/mkspecs/common/shell-unix.conf"; sourceTree = "<absolute>"; };
 		899D1A64D731E2C3BE35CA87 /* qt_lib_clucene_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_clucene_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_clucene_private.pri; sourceTree = "<absolute>"; };
 		8BE0AE7DA447D49D386393B2 /* qt_lib_quickparticles_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_quickparticles_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri; sourceTree = "<absolute>"; };
 		8C2AAD179DE5E5A8DA0A02C9 /* qt_lib_webkit.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_webkit.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_webkit.pri; sourceTree = "<absolute>"; };
 		8C3616A0A684FFABEE369F42 /* qt_lib_multimedia_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_multimedia_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri; sourceTree = "<absolute>"; };
-		8D467E7358ADF4E3703F837B /* mainwindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = mainwindow.cpp; path = /Users/meteor/Desktop/qt_xcode_project/mainwindow.cpp; sourceTree = "<absolute>"; };
+		8D467E7358ADF4E3703F837B /* mainwindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mainwindow.cpp; sourceTree = "<absolute>"; };
 		8D9815BDB5BD9F90D2BC05C5 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
 		8FA8C6D6A3BDFA9B322E8751 /* qt_lib_core_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_core_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_core_private.pri; sourceTree = "<absolute>"; };
 		981E831BB311581530D1FBC6 /* qmake.conf */ = {isa = PBXFileReference; lastKnownFileType = file; name = qmake.conf; path = "../../Qt5.2.1/5.2.1/clang_64/mkspecs/macx-clang/qmake.conf"; sourceTree = "<absolute>"; };
@@ -135,10 +139,12 @@
 		AB745978DF0F41D1801ABDA6 /* .qmake.stash */ = {isa = PBXFileReference; lastKnownFileType = file; path = .qmake.stash; sourceTree = "<absolute>"; };
 		B2E199C4D48EAE87E95C51B2 /* qt_lib_macextras_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_macextras_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_macextras_private.pri; sourceTree = "<absolute>"; };
 		B3B290EDC4ECB05031652300 /* qt_lib_platformsupport_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_platformsupport_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_platformsupport_private.pri; sourceTree = "<absolute>"; };
+		B403C862F6901F1422203B3B /* mainwindow_3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mainwindow_3.h; sourceTree = "<absolute>"; };
 		B425771D8B397720D9E45771 /* qt_lib_qmltest_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_qmltest_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri; sourceTree = "<absolute>"; };
 		BAA6D607BE289682C04C278B /* qt_lib_qmldevtools_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_qmldevtools_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri; sourceTree = "<absolute>"; };
 		BCDDE3E8C682CAD8A9568697 /* qt_lib_uitools.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_uitools.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_uitools.pri; sourceTree = "<absolute>"; };
 		C550F920140A4C3D5D846788 /* qt_lib_quick.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_quick.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_quick.pri; sourceTree = "<absolute>"; };
+		C5D1C060BED0DBA55B66EDB7 /* mainwindow_3.ui */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainwindow_3.ui; sourceTree = "<absolute>"; };
 		C637EC581BA7A704BB82EF78 /* Sock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sock.h; sourceTree = "<absolute>"; };
 		C73014BEE2B1E067EF32685C /* Transcoding.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Transcoding.cpp; sourceTree = "<absolute>"; };
 		CCA304D91898E797D1660641 /* mac.conf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mac.conf; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/common/mac.conf; sourceTree = "<absolute>"; };
@@ -154,6 +160,7 @@
 		E114E332F2E0A92567F99EB6 /* qt_lib_declarative.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_declarative.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_declarative.pri; sourceTree = "<absolute>"; };
 		E15D408F7FF293E4EED8F4A9 /* qt_lib_sensors_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_sensors_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_sensors_private.pri; sourceTree = "<absolute>"; };
 		E68807A03E056AC8D78503D1 /* unix.conf */ = {isa = PBXFileReference; lastKnownFileType = file; name = unix.conf; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/common/unix.conf; sourceTree = "<absolute>"; };
+		EBB6B1E2E0FA5A7197B9BC38 /* ui_mainwindow_3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui_mainwindow_3.h; sourceTree = "<absolute>"; };
 		ECC59AAE665DE5C1D28F6004 /* mail.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mail.cpp; sourceTree = "<absolute>"; };
 		ECD1D489A43E38428C92A80C /* qt_lib_multimediawidgets.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_multimediawidgets.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri; sourceTree = "<absolute>"; };
 		F2167A50327B1A62B1F42219 /* smtp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = smtp.h; sourceTree = "<absolute>"; };
@@ -194,6 +201,7 @@
 			children = (
 				59342C100B758CDE10A0EA4D /* mainwindow.ui */,
 				112EB0E4BF9FCAE85708FE93 /* mainwindow_2.ui */,
+				C5D1C060BED0DBA55B66EDB7 /* mainwindow_3.ui */,
 			);
 			name = "Sources [uic]";
 			sourceTree = "<Group>";
@@ -203,8 +211,10 @@
 			children = (
 				721C1DE06B327393E3F7D7E1 /* moc_mainwindow.cpp */,
 				5ED998C251DA1993B5D64456 /* moc_mainwindow_2.cpp */,
+				2B52508672DA2BBAE73E7297 /* moc_mainwindow_3.cpp */,
 				14C9776A4B2E34DB51106724 /* ui_mainwindow.h */,
 				112F8FAB0DC0FFDEB18BE80D /* ui_mainwindow_2.h */,
+				EBB6B1E2E0FA5A7197B9BC38 /* ui_mainwindow_3.h */,
 			);
 			name = "Generated Sources";
 			sourceTree = "<Group>";
@@ -293,6 +303,7 @@
 				682A50D19E416195436708E4 /* main.cpp */,
 				8D467E7358ADF4E3703F837B /* mainwindow.cpp */,
 				82F4EFC7A89F4B0858CFD68B /* mainwindow_2.cpp */,
+				86003C802742FA05EA214CD4 /* mainwindow_3.cpp */,
 				C73014BEE2B1E067EF32685C /* Transcoding.cpp */,
 				378C7D30C918FF9DAC263399 /* pop3.cpp */,
 				859D4E55A0C3410A717F017F /* smtp.cpp */,
@@ -300,6 +311,7 @@
 				ECC59AAE665DE5C1D28F6004 /* mail.cpp */,
 				4479F30C5218C73018CD6430 /* mainwindow.h */,
 				A5EE924162B3F362D2B99E6E /* mainwindow_2.h */,
+				B403C862F6901F1422203B3B /* mainwindow_3.h */,
 				F2167A50327B1A62B1F42219 /* smtp.h */,
 				229BBA69EAFF1E600BE44D89 /* pop3.h */,
 				0A9DEAFC94543BC048F599CE /* Transcoding.hpp */,
@@ -454,7 +466,6 @@
 		6DB9C3763D02B1415CD9D565 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
 			};
 			buildConfigurationList = DAC4C1AA5EDEA1C85E9CA5E6 /* Build configuration list for PBXProject "qt_xcode_project" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -505,6 +516,7 @@
 				2D367B399AA57F7319FEA1FA /* main.cpp in Compile Sources */,
 				14475494DADFD4D034032C84 /* mainwindow.cpp in Compile Sources */,
 				B8A3C6DACD2684B793F711EE /* mainwindow_2.cpp in Compile Sources */,
+				2AB5848D27FDD3D720795B30 /* mainwindow_3.cpp in Compile Sources */,
 				AEB003B23C67E15330ED9BA9 /* Transcoding.cpp in Compile Sources */,
 				DDB2D38278E4FB10468DC9AE /* pop3.cpp in Compile Sources */,
 				E236B77673CC859F2F6ED53C /* smtp.cpp in Compile Sources */,
@@ -512,6 +524,7 @@
 				E32594FAA9B9BBD350D2739E /* mail.cpp in Compile Sources */,
 				2F9983ACB124B74F32685F47 /* moc_mainwindow.cpp in Compile Sources */,
 				479E3091AC20124A7DBDCD27 /* moc_mainwindow_2.cpp in Compile Sources */,
+				E41EE9B46F9EDDC939B77415 /* moc_mainwindow_3.cpp in Compile Sources */,
 			);
 			name = "Compile Sources";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,7 +535,7 @@
 		B1729EE07AB33CF33A2C71CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F9799AFF768D5ADEE35854B /* Qt Preprocess */;
-			targetProxy = 00C342601D02A9A800C2BA0C /* PBXContainerItemProxy */;
+			targetProxy = 006F00661D041DF2005767C6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -530,31 +543,17 @@
 		339EE1B2CC4FC24589A0EA95 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = x86_64;
 				CC = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1.0;
 				DYLIB_CURRENT_VERSION = 1.0.0;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					/Users/meteor/Qt5.2.1/5.2.1/clang_64/lib,
 					/Users/meteor/Qt5.2.1/5.2.1/clang_64/lib,
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					.,
 					../../Qt5.2.1/5.2.1/clang_64/lib,
@@ -600,10 +599,11 @@
 				OTHER_LDFLAGS = (
 					"-headerpad_max_install_names",
 					"-F/Users/meteor/Qt5.2.1/5.2.1/clang_64/lib",
+					"-liconv",
 				);
 				PRODUCT_NAME = testcpp;
 				QT_LIBRARY_SUFFIX = "";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.11;
 				SYMROOT = /Users/meteor/Desktop/qt_xcode_project;
 			};
 			name = Release;
@@ -611,33 +611,18 @@
 		3AA6C32AC930069E80220CF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = x86_64;
 				CC = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1.0;
 				DYLIB_CURRENT_VERSION = 1.0.0;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					/Users/meteor/Qt5.2.1/5.2.1/clang_64/lib,
 					/Users/meteor/Qt5.2.1/5.2.1/clang_64/lib,
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					.,
 					../../Qt5.2.1/5.2.1/clang_64/lib,
@@ -658,7 +643,6 @@
 					/System/Library/Frameworks/,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-pipe",
 					"-O2",
@@ -684,10 +668,11 @@
 				OTHER_LDFLAGS = (
 					"-headerpad_max_install_names",
 					"-F/Users/meteor/Qt5.2.1/5.2.1/clang_64/lib",
+					"-liconv",
 				);
 				PRODUCT_NAME = testcpp;
 				QT_LIBRARY_SUFFIX = _debug;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.11;
 				SYMROOT = /Users/meteor/Desktop/qt_xcode_project;
 			};
 			name = Debug;
@@ -695,37 +680,23 @@
 		6666AA5E688052234F6758D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				OTHER_LDFLAGS = (
-					"-headerpad_max_install_names",
-					"-F/Users/meteor/Qt5.2.1/5.2.1/clang_64/lib",
-					"-liconv",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "meteor.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = testcpp;
 				QT_LIBRARY_SUFFIX = "";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.11;
 			};
 			name = Release;
 		};
 		77418F46922677BB04ED38DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				OTHER_LDFLAGS = (
-					"-headerpad_max_install_names",
-					"-F/Users/meteor/Qt5.2.1/5.2.1/clang_64/lib",
-					"-liconv",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "meteor.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = testcpp;
 				QT_LIBRARY_SUFFIX = _debug;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.11;
 			};
 			name = Debug;
 		};

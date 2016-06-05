@@ -1,5 +1,5 @@
-dependencies: /Users/meteor/Desktop/qt_xcode_project/mainwindow.cpp \
-  mainwindow.h \
+dependencies: /Users/meteor/Desktop/qt_xcode_project/moc_mainwindow_3.cpp \
+  mainwindow_3.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -74,59 +74,4 @@ dependencies: /Users/meteor/Desktop/qt_xcode_project/mainwindow.cpp \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qcursor.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qkeysequence.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qicon.h \
-  ui_mainwindow.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/QVariant \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Versions/5/Headers/qvariant.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/qmap.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QAction \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qaction.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qactiongroup.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qaction.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QApplication \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qapplication.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/qcoreapplication.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/qcoreevent.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qguiapplication.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qinputmethod.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/qlocale.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QButtonGroup \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qbuttongroup.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QCheckBox \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qcheckbox.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qabstractbutton.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QHeaderView \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qheaderview.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qabstractitemview.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qabstractscrollarea.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/qset.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qabstractitemdelegate.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qstyleoption.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qabstractspinbox.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qvalidator.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/qregularexpression.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qslider.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qabstractslider.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qstyle.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qtabbar.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qrubberband.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QLabel \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qlabel.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qlineedit.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qtextcursor.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qtextformat.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qpen.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qtextoption.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qpushbutton.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMessageBox \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmessagebox.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-  pop3.h Sock.h Transcoding.hpp mail.hpp smtp.h
+  ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qicon.h

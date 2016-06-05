@@ -111,13 +111,12 @@ dependencies: /Users/meteor/Desktop/qt_xcode_project/mainwindow_2.cpp \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qstyle.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qtabbar.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qrubberband.h \
+  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qlabel.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QListWidget \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qlistwidget.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QMenuBar \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmenubar.h \
-  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qmenu.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qpushbutton.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qabstractbutton.h \
