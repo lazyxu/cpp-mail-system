@@ -16,7 +16,10 @@ using  namespace std;
 class pop3
 {
 public:
-	pop3(string address, string password);
+    inline pop3(string strAccount, string strPassword){
+        this->strPop3 = "pop3.163.com";
+        this->strMailAddress = strAccount;
+        this->strMailPassword = strPassword;};
 	bool bfLoginPop3(bool IsDebug);
 	mail *pmailReceiveMail(bool IsDebug, unsigned long &n);
 private:

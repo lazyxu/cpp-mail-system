@@ -6,12 +6,6 @@
 
 #include "pop3.h"
 
-pop3::pop3(string strAccount, string strPassword)
-{
-    this->strPop3 = "pop3.163.com";
-    this->strMailAddress = strAccount;
-    this->strMailPassword = strPassword;
-}
 bool pop3::bfLoginPop3(bool bIsDebug)
 {
     if ( bIsDebug ) std::cout<< strPop3.c_str();
