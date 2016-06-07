@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_3_t {
-    QByteArrayData data[7];
-    char stringdata[58];
+    QByteArrayData data[8];
+    char stringdata[73];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,12 +33,14 @@ QT_MOC_LITERAL(0, 0, 12),
 QT_MOC_LITERAL(1, 13, 4),
 QT_MOC_LITERAL(2, 18, 0),
 QT_MOC_LITERAL(3, 19, 11),
-QT_MOC_LITERAL(4, 31, 7),
-QT_MOC_LITERAL(5, 39, 8),
-QT_MOC_LITERAL(6, 48, 8)
+QT_MOC_LITERAL(4, 31, 10),
+QT_MOC_LITERAL(5, 42, 11),
+QT_MOC_LITERAL(6, 54, 8),
+QT_MOC_LITERAL(7, 63, 8)
     },
-    "MainWindow_3\0init\0\0std::string\0account\0"
-    "password\0sendMail\0"
+    "MainWindow_3\0init\0\0std::string\0"
+    "strAccount\0strPassword\0bIsDebug\0"
+    "sendMail\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,11 +58,11 @@ static const uint qt_meta_data_MainWindow_3[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,   24,    2, 0x08,
-       6,    0,   29,    2, 0x08,
+       1,    3,   24,    2, 0x08,
+       7,    0,   31,    2, 0x08,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    4,    5,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3, QMetaType::Bool,    4,    5,    6,
     QMetaType::Void,
 
        0        // eod
@@ -71,7 +73,7 @@ void MainWindow_3::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     if (_c == QMetaObject::InvokeMetaMethod) {
         MainWindow_3 *_t = static_cast<MainWindow_3 *>(_o);
         switch (_id) {
-        case 0: _t->init((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
+        case 0: _t->init((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3]))); break;
         case 1: _t->sendMail(); break;
         default: ;
         }

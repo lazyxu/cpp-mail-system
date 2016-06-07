@@ -75,4 +75,8 @@ dependencies: /Users/meteor/Desktop/qt_xcode_project/moc_mainwindow_2.cpp \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qkeysequence.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qicon.h \
-  mail.hpp
+  mail.h \
+  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMessageBox \
+  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmessagebox.h \
+  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+  pop3.h Sock.h Transcoding.h

@@ -41,6 +41,21 @@ bool Sock::Connect(const char *host_id, const int &port)
     else
         return true;
 }
+long Sock::recvline_socket()
+{
+    memset(recvbuf,0,BUFSIZ);
+    long i = 0;
+    while (1) {
+        i += recv(sock, &recvbuf[i], 1, 0);
+        if (recvbuf[i-1] == '\r') {
+            i += recv(sock, &recvbuf[i], 1, 0);
+            if (recvbuf[i-1] == '\n') {
+                break;
+            }
+        }
+    }
+    return i;
+}
 
 void Sock::send_socket(const char *s)
 {

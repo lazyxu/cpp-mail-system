@@ -70,7 +70,7 @@ public:
         writeMail_button->setIconSize(QSize(34, 17));
         account_label = new QLabel(centralwidget);
         account_label->setObjectName(QStringLiteral("account_label"));
-        account_label->setGeometry(QRect(110, 10, 62, 16));
+        account_label->setGeometry(QRect(110, 10, 462, 16));
         MainWindow_2->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow_2);
@@ -80,7 +80,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow_2)
     {
-        MainWindow_2->setWindowTitle(QApplication::translate("MainWindow_2", "MainWindow", 0));
+        MainWindow_2->setWindowTitle(QApplication::translate("MainWindow_2", "\346\224\266\344\277\241", 0));
         revMail_button->setText(QString());
         writeMail_button->setText(QString());
         account_label->setText(QString());

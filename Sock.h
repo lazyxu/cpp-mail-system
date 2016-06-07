@@ -12,11 +12,11 @@
 #include <sys/socket.h>
 #include <stdio.h>
 #include <netinet/in.h>
-#include<stdexcept>
-#include<netdb.h>
-#include<string.h>
-#include<sys/types.h>
-#include<unistd.h>
+#include <stdexcept>
+#include <netdb.h>
+#include <string.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include <fcntl.h> 
 
 class Sock
@@ -25,6 +25,7 @@ public:
     Sock();
     bool Connect(const char *host_id, const int &port);
     void send_socket(const char *s);
+    long recvline_socket();
     long recv_socket();
     const char * get_recvbuf();
     ~Sock();

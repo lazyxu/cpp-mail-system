@@ -17,15 +17,15 @@ public:
     string info();
     string fullInfo();
     string getType();
-    void setMail(string from, string to, string title, string content, string Date, string type, long size);
+    void setMail(string from, string to, string title, string content, string Date, string type, size_t size);
     void showMail();
 private:
-    string from;
-    string to;
-    string title;
-    string content;
-    string Date;
-    string type;
-    long size;
+    string strFrom;
+    string strTo;
+    string strTitle;
+    string strContent;
+    string strDate;
+    string strType;
+    size_t ulSize;
 };
 #endif /* mail_hpp */

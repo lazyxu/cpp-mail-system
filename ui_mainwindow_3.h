@@ -76,7 +76,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow_3)
     {
-        MainWindow_3->setWindowTitle(QApplication::translate("MainWindow_3", "MainWindow", 0));
+        MainWindow_3->setWindowTitle(QApplication::translate("MainWindow_3", "\345\206\231\344\277\241", 0));
         label->setText(QApplication::translate("MainWindow_3", "\345\217\221\344\273\266\344\272\272", 0));
         sendMail_button->setText(QApplication::translate("MainWindow_3", "\345\217\221\351\200\201", 0));
         label_2->setText(QApplication::translate("MainWindow_3", "\346\224\266\344\273\266\344\272\272", 0));

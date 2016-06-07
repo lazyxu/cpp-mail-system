@@ -9,7 +9,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>Created by Qt/QMake</string>
 	<key>CFBundleIdentifier</key>
-	<string>meteor.testcpp</string>
+	<string>MeteorKL.testcpp</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>

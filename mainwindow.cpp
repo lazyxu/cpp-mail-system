@@ -1,19 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "QMessageBox"
-#include "pop3.h"
-#include "smtp.h"
 void MainWindow::loginCheck()
 {
     std::cout << "checking...\n";
-    bool IsDebug = true;
-    std::string account = ui->username->text().toStdString();
-    std::string password = ui->password->text().toStdString();
-    pop3 pop3Test("pop3.163.com", account, password);
-    smtp smtpTest("smtp.163.com", account, password);
-    if ( smtpTest.LoginSmtp(IsDebug)  && pop3Test.LoginPop3(IsDebug) ) {
+    std::string strAccount = ui->username->text().toStdString();
+    std::string strPassword = ui->password->text().toStdString();
+    pop3 pop3Test(strAccount, strPassword);
+    if ( pop3Test.bfLoginPop3(this->bIsDebug) ) {
         std::cout << "login successful!\n";
-        emit loginSuccessful(account, password);
+        emit loginSuccessful(strAccount, strPassword, bIsDebug);
     }
     else {
         QMessageBox::warning(this, tr("Waring"),
@@ -29,10 +24,11 @@ void MainWindow::close()
     MainWindow::~MainWindow();
 }
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(bool bIsDebug, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
     {
+        this->bIsDebug = bIsDebug;
         ui->setupUi(this);
         ui->username->setFocus();
         ui->username->setText("qqq1051814353@163.com");

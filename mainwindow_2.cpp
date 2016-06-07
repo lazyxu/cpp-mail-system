@@ -1,13 +1,14 @@
 #include "mainwindow_2.h"
 #include "ui_mainwindow_2.h"
-#include <iostream>
-#include "pop3.h"
 
-void MainWindow_2::init(std::string account, std::string password)
+
+void MainWindow_2::init(std::string strAccount, std::string strPassword, bool bIsDebug)
 {
     std::cout << "init...\n";
-    this->account = account;
-    this->password = password;
+    this->account = strAccount;
+    this->password = strPassword;
+    this->bIsDebug = bIsDebug;
+    ui->account_label->setText("当前登录账号："+QString(QString::fromLocal8Bit(this->account.c_str())));
     this->show();
     //revMail();
 }
@@ -21,14 +22,13 @@ void MainWindow_2::revMail()
     }
     ui->revMail_list->clear();
     this->mailRevN = 0;
-    unsigned long i;
-    bool IsDebug = true;
-    pop3 pop3Test("pop3.163.com", this->account, this->password);
-    if ( pop3Test.LoginPop3(IsDebug) )
-        this->mailRev = pop3Test.ReceiveMail(IsDebug, this->mailRevN);
-    for (i=0; i<this->mailRevN; i++) {
-        std::cout << QString(QString::fromLocal8Bit(this->mailRev[i].info().c_str())).toStdString();
-        ui->revMail_list->addItem(QString(QString::fromLocal8Bit(this->mailRev[i].info().c_str())));
+    unsigned long ulIndex;
+    pop3 pop3Test(this->account, this->password);
+    if ( pop3Test.bfLoginPop3(this->bIsDebug) )
+        this->mailRev = pop3Test.pmailReceiveMail(this->bIsDebug, this->mailRevN);
+    for (ulIndex=0; ulIndex<this->mailRevN; ulIndex++) {
+        std::cout << QString(QString::fromLocal8Bit(this->mailRev[ulIndex].info().c_str())).toStdString();
+        ui->revMail_list->addItem(QString(QString::fromLocal8Bit(this->mailRev[ulIndex].info().c_str())));
     }
 }
 
@@ -39,22 +39,19 @@ void MainWindow_2::showRevMail()
     if ( n >= this->mailRevN ) {
         return;
     }
-    mail currentMail = this->mailRev[n];
-    if (currentMail.getType().compare("text/html")==0 ) {
-//        QUrl url;
-//        url.setUrl("http://mimg.126.net");
-//        ui->revMail_text->setSource(url);
-        ui->revMail_text->setHtml(QString(QString::fromLocal8Bit(currentMail.fullInfo().c_str())));
+    mail mailCurrent = this->mailRev[n];
+    if (mailCurrent.getType().compare("text/html")==0 ) {
+        ui->revMail_text->setHtml(QString(QString::fromLocal8Bit(mailCurrent.fullInfo().c_str())));
     }
     else
-        ui->revMail_text->setText(QString(QString::fromLocal8Bit(currentMail.fullInfo().c_str())));
+        ui->revMail_text->setText(QString(QString::fromLocal8Bit(mailCurrent.fullInfo().c_str())));
     
 }
 
 void MainWindow_2::writeMail()
 {
     std::cout << "writeMail...\n";
-    emit sWriteMail(account, password);
+    emit sWriteMail(this->account, this->password, this->bIsDebug);
 }
 
 MainWindow_2::MainWindow_2(QWidget *parent) :
@@ -62,11 +59,11 @@ MainWindow_2::MainWindow_2(QWidget *parent) :
     ui(new Ui::MainWindow_2)
     {
         this->mailRev = NULL;
-        //ui->account_label->setText(QString(QString::fromLocal8Bit(this->account.c_str())));
         ui->setupUi(this);
-        QFont font;
-        font.setPointSize(9); // 设置字号
-        ui->revMail_list->setFont(font);
+        QFont fontMailList;
+        fontMailList.setPointSize(9); // 设置字号
+        ui->revMail_list->setFont(fontMailList);
+        //ui->account_label->setFont(font);
         QObject::connect( ui->revMail_button, SIGNAL(clicked()), this, SLOT(revMail()) );
         QObject::connect( ui->revMail_list, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),
                           this, SLOT(showRevMail()));

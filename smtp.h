@@ -9,15 +9,15 @@
 #define SMTP_H_
 #include <iostream>
 #include "Sock.h"
-#include "Transcoding.hpp"
+#include "Transcoding.h"
 
 using  namespace std;
 class smtp
 {
 public:
-	smtp(string smtp="", string address="", string password="");
-	bool LoginSmtp(bool IsDebug);
-	bool SendMail(string strFromName, string strToMailAddress, string strTitle, string strContent, bool IsDebug);
+	smtp(string address, string password);
+	bool bfLoginSmtp(bool IsDebug);
+	bool bfSendMail(string strFromName, string strToMailAddress, string strTitle, string strContent, bool IsDebug);
 private:
     string strMailAddress;//邮箱地址
     string strMailPassword;//邮箱密码

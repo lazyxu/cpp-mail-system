@@ -44,7 +44,7 @@ moc_mainwindow.cpp: ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Version
 	/Users/meteor/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) mainwindow.h -o moc_mainwindow.cpp
 
 moc_mainwindow_2.cpp: ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
-		mail.hpp \
+		mail.h \
 		mainwindow_2.h
 	/Users/meteor/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) mainwindow_2.h -o moc_mainwindow_2.cpp
 

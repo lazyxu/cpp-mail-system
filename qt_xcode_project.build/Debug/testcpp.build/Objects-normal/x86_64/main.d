@@ -1,5 +1,5 @@
 dependencies: /Users/meteor/Desktop/qt_xcode_project/main.cpp smtp.h \
-  Sock.h Transcoding.hpp pop3.h mail.hpp \
+  Sock.h Transcoding.h pop3.h mail.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QApplication \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qapplication.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework/Headers/qcoreapplication.h \
@@ -89,4 +89,7 @@ dependencies: /Users/meteor/Desktop/qt_xcode_project/main.cpp smtp.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
   ../../Qt5.2.1/5.2.1/clang_64/lib/QtGui.framework/Headers/qicon.h \
+  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMessageBox \
+  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmessagebox.h \
+  ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
   mainwindow_2.h mainwindow_3.h

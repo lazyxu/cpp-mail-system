@@ -6,367 +6,308 @@
 
 #include "pop3.h"
 
-pop3::pop3(string pop3, string address, string password)
+pop3::pop3(string strAccount, string strPassword)
 {
-	strPop3 = pop3;
-	strMailAddress = address;
-	strMailPassword = password;
+    this->strPop3 = "pop3.163.com";
+    this->strMailAddress = strAccount;
+    this->strMailPassword = strPassword;
 }
-bool pop3::LoginPop3(bool IsDebug)
+bool pop3::bfLoginPop3(bool bIsDebug)
 {
-    if ( IsDebug ) std::cout<< strPop3.c_str();
-	int pop3Port = 110;//pop3协议专用端口
-	if(sockReceiveMail.Connect(strPop3.c_str(), pop3Port) == false)
-		return false;
-	if (IsDebug) std::cout << "connected\n";
-	sockReceiveMail.recv_socket();
-	if (IsDebug) std::cout << "Client:connect successfully! \nServer:"
-		<< sockReceiveMail.get_recvbuf() << std::endl;
-
-	sockReceiveMail.send_socket("user q1051814353@163.com\r\n");//输入邮箱用户名
-	sockReceiveMail.recv_socket();
-	if (IsDebug) std::cout << "Client : send name \nServer:"
-	   << sockReceiveMail.get_recvbuf() << std::endl;
-
-	sockReceiveMail.send_socket("pass q1051814353\r\n");//邮箱密码
-	sockReceiveMail.recv_socket();
-	if (IsDebug) std::cout << "Client : send password \n Server ："
-		<< sockReceiveMail.get_recvbuf() << std::endl;
-	return true;
-}
-
-char *reverse(char *s)
-{
-    char temp;
-    char *p = s;    //p指向s的头部
-    char *q = s;    //q指向s的尾部
-    while(*q)
-        ++q;
-    q--;
-
-    //交换移动指针，直到p和q交叉
-    while(q > p)
-    {
-        temp = *p;
-        *p++ = *q;
-        *q-- = temp;
-    }
-    return s;
-}
-
-/*
- * 功能：整数转换为字符串
- * char s[] 的作用是存储整数的每一位
- */
-char *itoa(int n)
-{
-    int i = 0,isNegative = 0;
-    static char s[100];      //必须为static变量，或者是全局变量
-    if((isNegative = n) < 0) //如果是负数，先转为正数
-    {
-        n = -n;
-    }
-    do      //从各位开始变为字符，直到最高位，最后应该反转
-    {
-        s[i++] = n%10 + '0';
-        n = n/10;
-    }while(n > 0);
-
-    if(isNegative < 0)   //如果是负数，补上负号
-    {
-        s[i++] = '-';
-    }
-    s[i] = '\0';    //最后加上字符串结束符
-    return reverse(s);
-}
-
-bool is_ok(const char *str)
-{
-    if (*str=='+' && *(str+1)=='O' && *(str+2)=='K' && *(str+3)==' ') {
-        return 1;
-    }
-    return 0;
-}
-
-bool is_end(const char *str, long len)
-{
-    char tempstr[]="\r\n.\r\n";
-    long i =len-1;
-    long j=i>=4?4:i;
-    if (BUFSIZ == len) {
-        return 0;
-    }
-    while(str[i]==tempstr[j]){
-        if (j==0) {
-            return 1;
-        }
-        i--;
-        j--;
-    }
-    return 0;
-}
-
-long get_long(char *str, int &i)
-{
-    long n = 0;
-    while (!(str[i]>='0'&&str[i]<='9')) {
-        i++;
-    }
-    while (str[i]>='0'&&str[i]<='9') {
-        n *= 10;
-        n += str[i]-'0';
-        i++;
-    }
-    return n;
-}
-
-long *list_to_array(char *str, unsigned long &n)
-{
-    int i = 0;
-    unsigned long j;
-    long *mail_size, index;
-    n = get_long(str, i);
-    printf("n:%ld i:%d ", n, i);
-    mail_size = (long *)malloc(sizeof(long)*(n+1));
-    mail_size[0] = get_long(str, i);
-    for (j=0; j<n; j++) {
-        index = get_long(str, i);
-        mail_size[index] = get_long(str, i);
-        printf("n:%ld \n", mail_size[index]);
-    }
-    return mail_size;
-}
-
-void getMailInfo(mail &revMail, string revMailContent, long size)
-{
-    size_t start, end;
-    string from, to, title, content, Date;
-    char from_charset[10]="utf-8";
-    start = revMailContent.find("From: ", 0);
-    if (start!=(size_t)-1) {
-        start += 6;
-        from = "";
-        if ((end=revMailContent.find("=\?UTF-8\?B\?", start))!=(size_t)-1) {
-            start = end + 10;
-            end = revMailContent.find("\?=", start);
-            from = revMailContent.substr(start, end-start);
-            from = base64_decode(from.c_str(), from.length());
-            start = revMailContent.find("<", start);
-            from += " ";
-        }
-        else if ((end=revMailContent.find("=\?gb18030\?B\?", start))!=(size_t)-1) {
-            start = end + 13;
-            end = revMailContent.find("\?=", start);
-            from = revMailContent.substr(start, end-start);
-            from = base64_decode(from.c_str(), from.length());
-            start = revMailContent.find("<", start);
-            from += " ";
-        }
-        else if ((end=revMailContent.find("=?gb18030?B?", start))!=(size_t)-1) {
-            start = end + 13;
-            end = revMailContent.find("\?=", start);
-            from = revMailContent.substr(start, end-start);
-            from = base64_decode(from.c_str(), from.length());
-            start = revMailContent.find("<", start);
-            from += " ";
-        }
-        end = revMailContent.find("\r\n", start);
-        from += revMailContent.substr(start, end-start);
-    }
+    if ( bIsDebug ) std::cout<< strPop3.c_str();
+    int16_t sPop3Port = 110;//pop3协议专用端口
+    if(sockReceiveMail.Connect(strPop3.c_str(), sPop3Port) == false)
+        return false;
+    if (bIsDebug) std::cout << "connected\n";
+    sockReceiveMail.recv_socket();
+    if (bIsDebug) std::cout << "Client:connect successfully! \nServer:"
+        << sockReceiveMail.get_recvbuf() << std::endl;
     
-    start = revMailContent.find("To: ", 0);
-    if (start!=(size_t)-1) {
-        start += 4;
-        to = "";
-        if ((end=revMailContent.find("=\?UTF-8\?B\?", start))!=(size_t)-1) {
-            start = end + 10;
-            end = revMailContent.find("\?=", start);
-            to = revMailContent.substr(start, end-start);
-            to = base64_decode(to.c_str(), to.length());
-            start = revMailContent.find("<", start);
-            to += " ";
-        }
-        else if ((end=revMailContent.find("=\?gb18030\?B\?", start))!=(size_t)-1) {
-            start = end + 12;            //=?gb18030?B?
-            end = revMailContent.find("\?=", start);
-            to = revMailContent.substr(start, end-start);
-            to = base64_decode(to.c_str(), to.length());
-            start = revMailContent.find("<", start);
-            to += " ";
-        }
-        end = revMailContent.find("\r\n", start);
-        to += revMailContent.substr(start, end-start);
-    }
+    sockReceiveMail.send_socket(("user " + this->strMailAddress + "\r\n").c_str());//输入邮箱用户名
+    sockReceiveMail.recv_socket();
+    if (bIsDebug) std::cout << "Client : send name \nServer:"
+        << sockReceiveMail.get_recvbuf() << std::endl;
     
-    start = revMailContent.find("Date: ", 0);
-    if (start!=(size_t)-1) {
-        end = revMailContent.find("\r\n", start);
-        Date = revMailContent.substr(start+6, end-start-6);
+    sockReceiveMail.send_socket(("pass " + this->strMailPassword + "\r\n").c_str());//邮箱密码
+    sockReceiveMail.recv_socket();
+    if (bIsDebug) std::cout << "Client : send password \n Server ："
+        << sockReceiveMail.get_recvbuf() << std::endl;
+    return true;
+}
+
+size_t get_long(char *pcTemp, size_t &ulTempIndex)
+{
+    size_t ulIndex = 0;
+    while (!(pcTemp[ulTempIndex]>='0'&&pcTemp[ulTempIndex]<='9')) {
+        ulTempIndex++;
     }
+    while (pcTemp[ulTempIndex]>='0'&&pcTemp[ulTempIndex]<='9') {
+        ulIndex *= 10;
+        ulIndex += pcTemp[ulTempIndex]-'0';
+        ulTempIndex++;
+    }
+    return ulIndex;
+}
+
+size_t *list_to_array(char *pcTemp, size_t &ulTempIndex)
+{
+    size_t ulIndex1 = 0;
+    size_t ulIndex2;
+    size_t *pulMailSize, ulMailSize;
+    ulTempIndex = get_long(pcTemp, ulIndex1);
+    printf("n:%ld i:%lu ", ulTempIndex, ulIndex1);
+    pulMailSize = (size_t *)malloc(sizeof(size_t)*(ulTempIndex+1));
+    pulMailSize[0] = get_long(pcTemp, ulIndex1);
+    for (ulIndex2=0; ulIndex2<ulTempIndex; ulIndex2++) {
+        ulMailSize = get_long(pcTemp, ulIndex1);
+        pulMailSize[ulMailSize] = get_long(pcTemp, ulIndex1);
+        printf("n:%ld \n", pulMailSize[ulMailSize]);
+    }
+    return pulMailSize;
+}
+
+string strfSkipIllegal(string strTemp)
+{
+    size_t ulIndex, ulRet = 0;
+    for (ulIndex=0; ulIndex<strTemp.length(); ulIndex++) {
+        if (strTemp[ulIndex]<0x20) {
+            strTemp.resize(strTemp.length()-1);
+            continue;
+        }
+        strTemp[ulRet++] = strTemp[ulIndex];
+    }
+    strTemp[ulRet] = 0;
+    return strTemp;
+}
+
+bool bfLineData(string &strTemp, string strMail, string strClass)
+{
+    size_t ulStart, ulEnd, ulTemp;
+    string strFromCharset;
+    char acTemp[100000];
+    ulStart = strMail.find(strClass, 0);
+    if (ulStart==(size_t)-1)
+        return false;
+    ulStart += strClass.length();
+    strTemp = "";
+    ulEnd = strMail.find("\r\n", ulStart);
+    ulTemp = strMail.find("=?", ulStart);
+    if ( ulTemp != (size_t)-1 && ulTemp < ulEnd) {
+        ulStart = ulTemp + 2;
+        ulTemp = strMail.find("?B?", ulStart);
+        strFromCharset = strMail.substr(ulStart, ulTemp-ulStart);
+        ulStart = ulTemp+3;
+        ulTemp = strMail.find("?=", ulStart);
+        strTemp = strMail.substr(ulStart, ulTemp-ulStart);
+        pcfBase64Decode(acTemp, strTemp.c_str(), strTemp.length());
+        strTemp = acTemp;
+        strFromCharset = strfSkipIllegal(strFromCharset);
+        if (strFromCharset.compare("UTF-8") != 0) {
+            char *temp = (char *)malloc(sizeof(char)*strTemp.length());
+            memset(temp, 0, strTemp.length());
+            strcpy(temp, strTemp.c_str());
+            char *temp1 = (char *)malloc(sizeof(char)*strTemp.length()*2);
+            memset(temp1, 0, strTemp.length()*2);
+            bfCodingConvert(temp, strlen(temp), temp1, strTemp.length()*2, strFromCharset.c_str(), "utf-8");
+            strTemp = temp1;
+            //            string strOut;
+            //            strOut.resize(strTemp.length()*2+1, 0);
+            //            bfCodingConvert((char *)strTemp.c_str(), strTemp.length(), (char *)strOut.c_str(), strOut.length(), strFromCharset.c_str(), "utf-8");
+            //            strTemp = strOut;
+        }
+        ulStart = strMail.find("<", ulStart);
+        if (ulStart > ulEnd) {
+            return true;
+        }
+        strTemp += " ";
+    }
+    strTemp += strMail.substr(ulStart, ulEnd-ulStart);
+    return true;
+}
+
+void getMailInfo(mail &mailRev, string strMail, size_t ulSize)
+{
+    size_t ulStart = 0, ulEnd;
+    string strFrom, strTo, strTitle, strContent, strDate, strFromCharset = "utf-8", strContentTransferEncoding;
+    char acTemp[100000];
+    bfLineData(strFrom, strMail, "From: ");
+    bfLineData(strTo, strMail, "To: ");
+    bfLineData(strDate, strMail, "Date: ");
+    bfLineData(strTitle, strMail, "Subject: ");
     
     bool flag = false;
     string type;
-    if ((end=revMailContent.find("Content-Type: text/plain;", 0))!=(size_t)-1) {
-        start = end + 25;
+    if ((ulEnd=strMail.find("Content-Type: text/plain;", 0))!=(size_t)-1) {
+        ulStart = ulEnd + 25;
         flag = true;
         type = "text/plain";
     }
-    else if ((end=revMailContent.find("Content-Type: text/html;", 0))!=(size_t)-1) {
-        start = end + 24;
+    else if ((ulEnd=strMail.find("Content-Type: text/html;", 0))!=(size_t)-1) {
+        ulStart = ulEnd + 24;
         flag = true;
         type = "text/html";
     }
-    if (flag == true) {
-        if ((end=revMailContent.find("charset=GBK", start))!=(size_t)-1) {
-            start = end + 11;
-            from_charset[0]=0;
-            strcpy(from_charset,"gbk");
+    if ((ulEnd=strMail.find("Content-Transfer-Encoding: 8bit", 0))!=(size_t)-1) {
+        if ((ulEnd=strMail.find("\r\n\r\n", ulEnd))!=(size_t)-1) {
+            ulStart = ulEnd + 4;
+            ulEnd = strMail.find("\r\n.\r\n", ulStart);
+            strContent = strMail.substr(ulStart, ulEnd-ulStart);
         }
-        else if ((end=revMailContent.find("charset=\"gb18030\"", start))!=(size_t)-1) {
-            start = end + 17;
-            from_charset[0]=0;
-            strcpy(from_charset,"gb18030");
+    }
+    else if (flag == true) {
+        if ((ulEnd=strMail.find("charset=\"", ulStart))!=(size_t)-1) {
+            ulStart = ulEnd + 9;
+            ulEnd = strMail.find("\"\r\n", ulStart);
+            strFromCharset = strMail.substr(ulStart, ulEnd-ulStart);
+            strFromCharset = strfSkipIllegal(strFromCharset);
         }
-        if ((end=revMailContent.find("Content-Transfer-Encoding: base64", start))!=(size_t)-1) {
-            start = end + 33;
-            start = revMailContent.find("\r\n\r\n", start);
-            start += 4;
-            end = revMailContent.find("\r\n", start);
-            content = revMailContent.substr(start, end-start);
-            content = base64_decode(content.c_str(), content.length());
+        else if ((ulEnd=strMail.find("charset=", ulStart))!=(size_t)-1) {
+            ulStart = ulEnd + 8;
+            ulEnd = strMail.find("\r\n", ulStart);
+            strFromCharset = strMail.substr(ulStart, ulEnd-ulStart);
+            strFromCharset = strfSkipIllegal(strFromCharset);
         }
-        else if ((end=revMailContent.find("Content-Transfer-Encoding: base64", start))!=(size_t)-1) {
-            start = end + 33;
-            start = revMailContent.find("\r\n\r\n", start);
-            start += 4;
-            end = revMailContent.find("\r\n", start);
-            content = revMailContent.substr(start, end-start);
-            content = base64_decode(content.c_str(), content.length());
+        if ((ulEnd=strMail.find("Content-Transfer-Encoding: ", ulStart))!=(size_t)-1) {
+            ulStart = ulEnd + 27;
+            ulEnd = strMail.find("\r\n", ulStart);
+            strContentTransferEncoding = strMail.substr(ulStart, ulEnd-ulStart);
+            strContentTransferEncoding = strfSkipIllegal(strContentTransferEncoding);
+            
+            if (strcmp(strContentTransferEncoding.c_str(), "base64")==0) {//base64
+                ulStart = strMail.find("\r\n\r\n", ulStart);
+                ulStart += 4;
+                ulEnd = strMail.find("\r\n", ulStart);
+                strContent = strMail.substr(ulStart, ulEnd-ulStart);
+                strContent = strfSkipIllegal(strContent);
+                pcfBase64Decode(acTemp, strContent.c_str(), strContent.length());
+                strContent = acTemp;
+            }
+            else if (strContentTransferEncoding.compare("quoted-printable")==0) {
+                ulStart = strMail.find("\r\n\r\n", ulStart);
+                ulStart += 4;
+                ulEnd = strMail.find("\r\n.\r\n", ulStart);
+                strContent = strMail.substr(ulStart, ulEnd-ulStart);
+                strContent = string((char *)pcfQuotedPrintableDecode(strContent.c_str(), strContent.length()));
+            }
         }
-        else if ((end=revMailContent.find("Content-Transfer-Encoding: quoted-printable", start))!=(size_t)-1) {
-            start = end + 33;
-            start = revMailContent.find("\r\n\r\n", start);
-            start += 4;
-            end = revMailContent.find("\r\n.\r\n", start);
-            content = revMailContent.substr(start, end-start);
-            content = string((char *)quoted_printable_decode(content.c_str(), content.length()));
-        }
+        //        if ((ulEnd=strMail.find("Content-Transfer-Encoding: base64", ulStart))!=(size_t)-1) {
+        //            ulStart = ulEnd + 33;
+        //            ulStart = strMail.find("\r\n\r\n", ulStart);
+        //            ulStart += 4;
+        //            ulEnd = strMail.find("\r\n", ulStart);
+        //            strContent = strMail.substr(ulStart, ulEnd-ulStart);
+        //            pcfBase64Decode(acTemp, strContent.c_str(), strContent.length());
+        //            strContent = acTemp;
+        //        }
+        //        else if ((ulEnd=strMail.find("Content-Transfer-Encoding: base64", ulStart))!=(size_t)-1) {
+        //            ulStart = ulEnd + 33;
+        //            ulStart = strMail.find("\r\n\r\n", ulStart);
+        //            ulStart += 4;
+        //            ulEnd = strMail.find("\r\n", ulStart);
+        //            strContent = strMail.substr(ulStart, ulEnd-ulStart);
+        //            pcfBase64Decode(acTemp, strContent.c_str(), strContent.length());
+        //            strContent = acTemp;
+        //        }
+        //        else if ((ulEnd=strMail.find("Content-Transfer-Encoding: quoted-printable", ulStart))!=(size_t)-1) {
+        //            ulStart = ulEnd + 33;
+        //            ulStart = strMail.find("\r\n\r\n", ulStart);
+        //            ulStart += 4;
+        //            ulEnd = strMail.find("\r\n.\r\n", ulStart);
+        //            strContent = strMail.substr(ulStart, ulEnd-ulStart);
+        //            strContent = string((char *)pcfQuotedPrintableDecode(strContent.c_str(), strContent.length()));
+        //        }
         
-        if (strcmp(from_charset, "utf-8")!=0) {
-            char *temp = (char *)malloc(sizeof(char)*content.length());
-            strcpy(temp, content.c_str());
-            char *temp1 = (char *)malloc(sizeof(char)*content.length()*2);
-            codingConvert(temp, strlen(temp), temp1, content.length()*2, from_charset, "utf-8");
-            content = temp1;
+        if (strFromCharset.compare("utf-8")!=0) {
+            char *temp = (char *)malloc(sizeof(char)*strContent.length());
+            memset(temp, 0, strContent.length());
+            strcpy(temp, strContent.c_str());
+            char *temp1 = (char *)malloc(sizeof(char)*strContent.length()*2);
+            memset(temp1, 0, strContent.length()*2);
+            bfCodingConvert(temp, strlen(temp), temp1, strContent.length()*2, strFromCharset.c_str(), "utf-8");
+            strContent = temp1;
         }
     }
     else {
-        
-    }
-    
-    start = revMailContent.find("Subject: ", 0);
-    if (start!=(size_t)-1) {
-        start += 9;
-        if ((end=revMailContent.find("=\?GBK\?B\?", start))!=(size_t)-1) {
-            start = end + 8;
-            end = revMailContent.find("\?=", start);
-            title = revMailContent.substr(start, end-start);
-            title = base64_decode(title.c_str(), title.length());
-            char *temp = (char *)malloc(sizeof(char)*title.length());
-            strcpy(temp, title.c_str());
-            char *temp1 = (char *)malloc(sizeof(char)*title.length()/2*3);
-            codingConvert(temp, strlen(temp), temp1, title.length()/2*3, "gb18030", "utf-8");
-            title = temp1;
-            
-        }
-        else if ((end=revMailContent.find("=\?gb18030\?B\?", start))!=(size_t)-1) {
-            start = end + 12;
-            end = revMailContent.find("\?=", start);
-            title = revMailContent.substr(start, end-start);
-            title = base64_decode(title.c_str(), title.length());
-            char *temp = (char *)malloc(sizeof(char)*title.length());
-            strcpy(temp, title.c_str());
-            char *temp1 = (char *)malloc(sizeof(char)*title.length()/2*3);
-            codingConvert(temp, strlen(temp), temp1, title.length()/2*3, "gb18030", "utf-8");
-            title = temp1;
-        }
-        else {
-            end = revMailContent.find("\r\n", start);
-            title = revMailContent.substr(start, end-start);
+        if ((ulEnd=strMail.find("\r\n\r\n", 0))!=(size_t)-1) {
+            ulStart = ulEnd + 4;
+            ulEnd = strMail.find("\r\n.\r\n", ulStart);
+            strContent = strMail.substr(ulStart, ulEnd-ulStart);
         }
     }
     
-    revMail.setMail(from, to, title, content, Date, type, size);
+    
+    mailRev.setMail(strFrom, strTo, strTitle, strContent, strDate, type, ulSize);
 }
 
-mail *pop3::ReceiveMail(bool IsDebug, unsigned long &n)
+mail *pop3::pmailReceiveMail(bool bIsDebug, size_t &ulIndex)
 {
-	sockReceiveMail.send_socket("stat\r\n");
+    sockReceiveMail.send_socket("stat\r\n");
     sockReceiveMail.recv_socket();
-    if (IsDebug) std::cout << "Client : send stat \nServer : "
+    if (bIsDebug) std::cout << "Client : send stat \nServer : "
         << sockReceiveMail.get_recvbuf() << std::endl;
-
+    
     sockReceiveMail.send_socket("list\r\n");
     sockReceiveMail.recv_socket();
-    const char *recv = sockReceiveMail.get_recvbuf();
-    if (IsDebug) std::cout << "Client : send list \nServer :"  << recv << std::endl;
-    long *mail_rev;
-    mail_rev = list_to_array((char *)recv, n);
-          //下面的while循环有些问题，目前还没有想到解决方法。以后改正！
-    int i=1;
+    const char *pcRecv = sockReceiveMail.get_recvbuf();
+    if (bIsDebug) std::cout << "Client : send list \nServer :"  << pcRecv << std::endl;
+    size_t *ulRevMailSize;
+    ulRevMailSize = list_to_array((char *)pcRecv, ulIndex);
+    //下面的while循环有些问题，目前还没有想到解决方法。以后改正！
+    int32_t lIndex=1;
     //while (1)
-    long len;
-    char *stri=new char[4];
-    mail *revMail = new mail[n];
-    for (i=1; i<=(int)n; i++)
+    size_t ulLen;
+    char acIndex[10];
+    mail *pmailRev = new mail[ulIndex];
+    for (lIndex=1; lIndex<=(int32_t)ulIndex; lIndex++)
     {
-    	stri=itoa(i);
-    	if (IsDebug) std::cout << "---------------------------------------------------------------------------";
-    	if (IsDebug) std::cout << ((string)"retr "+(string)stri+(string)"\r\n").c_str();
-    	sockReceiveMail.send_socket(((string)"retr "+(string)stri+(string)"\r\n").c_str());
-        sockReceiveMail.recv_socket();
+        ulItoa(lIndex, acIndex);
+        //cIndex=itoa(lIndex);
+        if (bIsDebug) std::cout << "---------------------------------------------------------------------------";
+        if (bIsDebug) std::cout << ((string)"retr "+(string)acIndex+(string)"\r\n").c_str();
+        sockReceiveMail.send_socket(((string)"retr "+(string)acIndex+(string)"\r\n").c_str());
+        sockReceiveMail.recvline_socket();
         const char *recv = sockReceiveMail.get_recvbuf();
-    	if (IsDebug) std::cout << "Client : " << ((string)"retr "+(string)stri+(string)"\r\n").c_str() <<
-                "Server :" << recv  << endl;
-//        len = 0;
-//        while (len < mail_rev[i]) {
-//            //do{
-//            cout << "[" << len << "/" << mail_rev[i] << "]" ;
-//            len = len + sockReceiveMail.recv_socket();
-//            cout << "->[" << len << "/" << mail_rev[i] << "]" ;
-//            recv = sockReceiveMail.get_recvbuf();
-//            if (IsDebug) std::cout << recv << endl;
-//            //}while (!is_end(recv, len));
-//        }
-//        cout << "[" << len << "/" << mail_rev[i] << "]" ;
+        if (bIsDebug) std::cout << "Client : " << ((string)"retr "+(string)acIndex+(string)"\r\n").c_str() <<
+            "Server :" << recv  << endl;
+        //        len = 0;
+        //        while (len < mail_rev[i]) {
+        //            //do{
+        //            cout << "[" << len << "/" << mail_rev[i] << "]" ;
+        //            len = len + sockReceiveMail.recv_socket();
+        //            cout << "->[" << len << "/" << mail_rev[i] << "]" ;
+        //            recv = sockReceiveMail.get_recvbuf();
+        //            if (IsDebug) std::cout << recv << endl;
+        //            //}while (!is_end(recv, len));
+        //        }
+        //        cout << "[" << len << "/" << mail_rev[i] << "]" ;
         
-        len = 0;
-        long iRecvSize = mail_rev[i] + 3;
-        string revMailContent = "";
-        cout << "[" << len << "/" << mail_rev[i] + 3 << "]" ;
-        while (iRecvSize>0) {
-            long iRet = sockReceiveMail.recv_socket();
-            if (iRet > 0)
+        ulLen = 0;
+        size_t ulRevSize = ulRevMailSize[lIndex] + 3;
+        string strRevMailContent = "";
+        //cout << "[" << ulLen << "/" << ulRevMailSize[lIndex] + 3 << "]" ;
+        while (ulRevSize>0) {
+            size_t ulRet = sockReceiveMail.recv_socket();
+            if (ulRet > 0)
             {
-                len += iRet;
-                iRecvSize -= iRet;
+                ulLen += ulRet;
+                ulRevSize -= ulRet;
             }
             else
                 break;
-            cout << "->[" << len << "/" << mail_rev[i] + 3 << "]" ;
+            //cout << "->[" << ulLen << "/" << ulRevMailSize[lIndex] + 3 << "]" ;
             recv = sockReceiveMail.get_recvbuf();
-            revMailContent += recv;
+            strRevMailContent += recv;
             //if (IsDebug) std::cout << recv << endl;
         }
         //if (IsDebug) std::cout << revMailContent << endl << "[" << len << "/" << mail_rev[i] + 3 << "]" << endl;
-        getMailInfo(revMail[i-1], revMailContent, mail_rev[i] + 3);
-        cout << endl << "mail " << i << ":" << endl;
-        revMail[i-1].showMail();
-	}
+        getMailInfo(pmailRev[lIndex-1], strRevMailContent, ulRevMailSize[lIndex] + 3);
+        cout << "mail " << lIndex << ":" << endl;
+        pmailRev[lIndex-1].showMail();
+    }
     
     sockReceiveMail.send_socket("quit\r\n");
     sockReceiveMail.recv_socket();
-    if (IsDebug) std::cout << "Client : send quit \nServer :"
-           << sockReceiveMail.get_recvbuf() << std::endl;
-    return revMail;
+    if (bIsDebug) std::cout << "Client : send quit \nServer :"
+        << sockReceiveMail.get_recvbuf() << std::endl;
+    return pmailRev;
 }

@@ -28,8 +28,8 @@ HEADERS  += \
         mainwindow_3.h \
         smtp.h \
         pop3.h \
-        Transcoding.hpp \
-        mail.hpp \
+        Transcoding.h \
+        mail.h \
         Sock.h
 
 FORMS    += \

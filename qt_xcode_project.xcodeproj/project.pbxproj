@@ -42,7 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		006F00661D041DF2005767C6 /* PBXContainerItemProxy */ = {
+		00E4FE3A1D054D230083BB38 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6DB9C3763D02B1415CD9D565 /* Project object */;
 			proxyType = 1;
@@ -56,7 +56,6 @@
 		04880B9DC563853A9F944A88 /* qt_lib_script_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_script_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_script_private.pri; sourceTree = "<absolute>"; };
 		0624A5CCA9623C3079C36EAC /* qt_lib_macextras.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_macextras.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_macextras.pri; sourceTree = "<absolute>"; };
 		06F5C78CAFA396D310A9E7A2 /* qt_lib_testlib.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_testlib.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_testlib.pri; sourceTree = "<absolute>"; };
-		0A9DEAFC94543BC048F599CE /* Transcoding.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transcoding.hpp; sourceTree = "<absolute>"; };
 		0DAA23F8F3573511ED4C7878 /* qt_lib_help_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_help_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_help_private.pri; sourceTree = "<absolute>"; };
 		10C6CF1F7F277792B6349BB1 /* qt_lib_concurrent.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_concurrent.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_concurrent.pri; sourceTree = "<absolute>"; };
 		112EB0E4BF9FCAE85708FE93 /* mainwindow_2.ui */ = {isa = PBXFileReference; lastKnownFileType = file; path = mainwindow_2.ui; sourceTree = "<absolute>"; };
@@ -81,6 +80,7 @@
 		3D5BECB5E52C7FD792B06508 /* qt_lib_xml_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_xml_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_xml_private.pri; sourceTree = "<absolute>"; };
 		3D9262AAFCC81B7E9BE813F2 /* qt_lib_printsupport.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_printsupport.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_printsupport.pri; sourceTree = "<absolute>"; };
 		3E499673895DE7E457F830A9 /* qt_lib_bluetooth_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_bluetooth_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri; sourceTree = "<absolute>"; };
+		3EA75C409AA57570A4CCABB6 /* Transcoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transcoding.h; sourceTree = "<absolute>"; };
 		424C0054FA808AC84FAF64EB /* qt_lib_core.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_core.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_core.pri; sourceTree = "<absolute>"; };
 		4479F30C5218C73018CD6430 /* mainwindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mainwindow.h; sourceTree = "<absolute>"; };
 		493D53C40ACE7F39187281A2 /* qt_lib_concurrent_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_concurrent_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri; sourceTree = "<absolute>"; };
@@ -151,9 +151,9 @@
 		CD72E1DD69CC44668F6A6756 /* qt_lib_openglextensions_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_openglextensions_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri; sourceTree = "<absolute>"; };
 		CE3496047167CAE45DCBA0D7 /* qt_lib_bluetooth.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_bluetooth.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_bluetooth.pri; sourceTree = "<absolute>"; };
 		D2A6110DB5D503BF265B4407 /* qt_lib_designer_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_designer_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_designer_private.pri; sourceTree = "<absolute>"; };
-		D34DECC2A17468ACC7ED5B92 /* mail.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mail.hpp; sourceTree = "<absolute>"; };
 		D4048AA71829E789DE7FFC9B /* qt_lib_script.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_script.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_script.pri; sourceTree = "<absolute>"; };
 		D4B32C2222F82AC56BADEB21 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		D4C015F8436E326B0E478A6B /* mail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mail.h; sourceTree = "<absolute>"; };
 		D965EB38410CF3E7A3ED90C7 /* qt_lib_nfc_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_nfc_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_nfc_private.pri; sourceTree = "<absolute>"; };
 		DB51AD164EEC19F2CFE7B213 /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = ../../Qt5.2.1/5.2.1/clang_64/lib/QtCore.framework; sourceTree = "<absolute>"; };
 		DC884C2984AA266722F0FBAD /* qt_lib_testlib_private.pri */ = {isa = PBXFileReference; lastKnownFileType = file; name = qt_lib_testlib_private.pri; path = ../../Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_testlib_private.pri; sourceTree = "<absolute>"; };
@@ -314,8 +314,8 @@
 				B403C862F6901F1422203B3B /* mainwindow_3.h */,
 				F2167A50327B1A62B1F42219 /* smtp.h */,
 				229BBA69EAFF1E600BE44D89 /* pop3.h */,
-				0A9DEAFC94543BC048F599CE /* Transcoding.hpp */,
-				D34DECC2A17468ACC7ED5B92 /* mail.hpp */,
+				3EA75C409AA57570A4CCABB6 /* Transcoding.h */,
+				D4C015F8436E326B0E478A6B /* mail.h */,
 				C637EC581BA7A704BB82EF78 /* Sock.h */,
 			);
 			name = Sources;
@@ -535,7 +535,7 @@
 		B1729EE07AB33CF33A2C71CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F9799AFF768D5ADEE35854B /* Qt Preprocess */;
-			targetProxy = 006F00661D041DF2005767C6 /* PBXContainerItemProxy */;
+			targetProxy = 00E4FE3A1D054D230083BB38 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

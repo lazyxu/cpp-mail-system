@@ -23,20 +23,23 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-//    long n;
+//    size_t n;
 //    bool IsDebug = true;
-//    pop3 pop3Test("pop3.163.com", "qqq1051814353@163.com", "qqq1051814353");
-//    if ( pop3Test.LoginPop3(IsDebug) )
-//        pop3Test.ReceiveMail(IsDebug, n);
-    
+//    pop3 pop3Test("qqq1051814353@163.com", "qqq1051814353");
+//    if ( pop3Test.bfLoginPop3(IsDebug) )
+//        pop3Test.pmailReceiveMail(IsDebug, n);
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    MainWindow_2 w_2;
-    MainWindow_3 w_3;
-    QObject::connect(&w,SIGNAL(loginSuccessful(std::string, std::string)),&w_2,SLOT(init(std::string, std::string)));
-    QObject::connect(&w,SIGNAL(loginSuccessful(std::string, std::string)),&w,SLOT(close()));
-    QObject::connect(&w_2,SIGNAL(sWriteMail(std::string, std::string)),&w_3,SLOT(init(std::string, std::string)));
+    bool bIsDebug = true;
+    MainWindow wLoginWindow(bIsDebug);
+    wLoginWindow.show();
+    MainWindow_2 wMainWindow;
+    MainWindow_3 wSendMailWindow;
+    QObject::connect(&wLoginWindow, SIGNAL(loginSuccessful(std::string, std::string, bool)),
+                     &wMainWindow, SLOT(init(std::string, std::string, bool)));
+    QObject::connect(&wLoginWindow, SIGNAL(loginSuccessful(std::string, std::string, bool)),
+                     &wLoginWindow, SLOT(close()));
+    QObject::connect(&wMainWindow, SIGNAL(sWriteMail(std::string, std::string, bool)),
+                     &wSendMailWindow, SLOT(init(std::string, std::string, bool)));
     return a.exec();
     
 //    int choice;
