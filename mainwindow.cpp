@@ -1,14 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-void MainWindow::loginCheck()
+
+void MainWindow::slotLoginCheck()
 {
     if (bIsDebug) std::cout << "checking...\n";
     std::string strAccount = ui->username->text().toStdString();
     std::string strPassword = ui->password->text().toStdString();
-    pop3 pop3Test(strAccount, strPassword, bIsDebug);
+    CPop3 pop3Test(strAccount, strPassword, bIsDebug);
     if ( pop3Test.bfLoginPop3() ) {
         if (bIsDebug) std::cout << "login successful!\n";
-        emit loginSuccessful(strAccount, strPassword);
+        emit sigLoginSuccessful(strAccount, strPassword);
     }
     else {
         QMessageBox::warning(this, tr("Waring"),
@@ -17,7 +18,7 @@ void MainWindow::loginCheck()
     }
 }
 
-void MainWindow::close()
+void MainWindow::slotClose()
 {
     if (bIsDebug) std::cout << "close...\n";
     show();
@@ -43,7 +44,7 @@ MainWindow::MainWindow(bool bIsDebug, QWidget *parent) :
 
 //        ui->label_login->setPixmap(QPixmap("./images/login.png"));
         ui->label_title->setPixmap(QPixmap("./images/title.png"));
-        QObject::connect( ui->login_button, SIGNAL(clicked()), this, SLOT(loginCheck()) );
+        QObject::connect( ui->login_button, SIGNAL(clicked()), this, SLOT(slotLoginCheck()) );
     }
 
 MainWindow::~MainWindow()

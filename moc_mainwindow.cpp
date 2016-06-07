@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[8];
-    char stringdata[75];
+    char stringdata[92];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,16 +30,17 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10),
-QT_MOC_LITERAL(1, 11, 15),
-QT_MOC_LITERAL(2, 27, 0),
-QT_MOC_LITERAL(3, 28, 11),
-QT_MOC_LITERAL(4, 40, 7),
-QT_MOC_LITERAL(5, 48, 8),
-QT_MOC_LITERAL(6, 57, 10),
-QT_MOC_LITERAL(7, 68, 5)
+QT_MOC_LITERAL(1, 11, 18),
+QT_MOC_LITERAL(2, 30, 0),
+QT_MOC_LITERAL(3, 31, 11),
+QT_MOC_LITERAL(4, 43, 10),
+QT_MOC_LITERAL(5, 54, 11),
+QT_MOC_LITERAL(6, 66, 14),
+QT_MOC_LITERAL(7, 81, 9)
     },
-    "MainWindow\0loginSuccessful\0\0std::string\0"
-    "account\0password\0loginCheck\0close\0"
+    "MainWindow\0sigLoginSuccessful\0\0"
+    "std::string\0strAccount\0strPassword\0"
+    "slotLoginCheck\0slotClose\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -78,9 +79,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     if (_c == QMetaObject::InvokeMetaMethod) {
         MainWindow *_t = static_cast<MainWindow *>(_o);
         switch (_id) {
-        case 0: _t->loginSuccessful((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
-        case 1: _t->loginCheck(); break;
-        case 2: _t->close(); break;
+        case 0: _t->sigLoginSuccessful((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
+        case 1: _t->slotLoginCheck(); break;
+        case 2: _t->slotClose(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -88,7 +89,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         void **func = reinterpret_cast<void **>(_a[1]);
         {
             typedef void (MainWindow::*_t)(std::string , std::string );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow::loginSuccessful)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow::sigLoginSuccessful)) {
                 *result = 0;
             }
         }
@@ -132,7 +133,7 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MainWindow::loginSuccessful(std::string _t1, std::string _t2)
+void MainWindow::sigLoginSuccessful(std::string _t1, std::string _t2)
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

@@ -4,10 +4,10 @@
 #include <iostream>
 #include <QMainWindow>
 #include <QMessageBox>
-#include "pop3.h"
+#include "CPop3.h"
 
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -17,14 +17,23 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(bool bIsDebug, QWidget *parent = 0);
     ~MainWindow();
+    
 signals:
-    void loginSuccessful(std::string account, std::string password);
+    // 登录成功的信号
+    // strAccount: 账号
+    // strPassword: 密码
+    void sigLoginSuccessful(std::string strAccount, std::string strPassword);
+    
 private slots:
-    void loginCheck();
-    void close();
+    // 判断是否登录的槽
+    void slotLoginCheck();
+    
+    // 关闭界面的槽
+    void slotClose();
+    
 private:
-    Ui::MainWindow *ui;
-    bool bIsDebug;
+    Ui::MainWindow *ui; // 界面元素指针
+    bool bIsDebug; // 是否输出调试信息
 };
 
 #endif // MAINWINDOW_H

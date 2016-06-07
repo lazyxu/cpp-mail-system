@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_2_t {
     QByteArrayData data[10];
-    char stringdata[96];
+    char stringdata[114];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,19 +30,19 @@ struct qt_meta_stringdata_MainWindow_2_t {
 static const qt_meta_stringdata_MainWindow_2_t qt_meta_stringdata_MainWindow_2 = {
     {
 QT_MOC_LITERAL(0, 0, 12),
-QT_MOC_LITERAL(1, 13, 10),
-QT_MOC_LITERAL(2, 24, 0),
-QT_MOC_LITERAL(3, 25, 11),
-QT_MOC_LITERAL(4, 37, 10),
-QT_MOC_LITERAL(5, 48, 11),
-QT_MOC_LITERAL(6, 60, 4),
-QT_MOC_LITERAL(7, 65, 7),
-QT_MOC_LITERAL(8, 73, 9),
-QT_MOC_LITERAL(9, 83, 11)
+QT_MOC_LITERAL(1, 13, 12),
+QT_MOC_LITERAL(2, 26, 0),
+QT_MOC_LITERAL(3, 27, 11),
+QT_MOC_LITERAL(4, 39, 10),
+QT_MOC_LITERAL(5, 50, 11),
+QT_MOC_LITERAL(6, 62, 8),
+QT_MOC_LITERAL(7, 71, 11),
+QT_MOC_LITERAL(8, 83, 13),
+QT_MOC_LITERAL(9, 97, 15)
     },
-    "MainWindow_2\0sWriteMail\0\0std::string\0"
-    "strAccount\0strPassword\0init\0revMail\0"
-    "writeMail\0showRevMail\0"
+    "MainWindow_2\0sigWriteMail\0\0std::string\0"
+    "strAccount\0strPassword\0slotInit\0"
+    "slotRevMail\0slotWriteMail\0slotShowRevMail\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -85,11 +85,11 @@ void MainWindow_2::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     if (_c == QMetaObject::InvokeMetaMethod) {
         MainWindow_2 *_t = static_cast<MainWindow_2 *>(_o);
         switch (_id) {
-        case 0: _t->sWriteMail((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
-        case 1: _t->init((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
-        case 2: _t->revMail(); break;
-        case 3: _t->writeMail(); break;
-        case 4: _t->showRevMail(); break;
+        case 0: _t->sigWriteMail((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
+        case 1: _t->slotInit((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
+        case 2: _t->slotRevMail(); break;
+        case 3: _t->slotWriteMail(); break;
+        case 4: _t->slotShowRevMail(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -97,7 +97,7 @@ void MainWindow_2::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         void **func = reinterpret_cast<void **>(_a[1]);
         {
             typedef void (MainWindow_2::*_t)(std::string , std::string );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow_2::sWriteMail)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow_2::sigWriteMail)) {
                 *result = 0;
             }
         }
@@ -141,7 +141,7 @@ int MainWindow_2::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MainWindow_2::sWriteMail(std::string _t1, std::string _t2)
+void MainWindow_2::sigWriteMail(std::string _t1, std::string _t2)
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

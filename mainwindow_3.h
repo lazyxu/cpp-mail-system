@@ -4,7 +4,7 @@
 #include <iostream>
 #include <QMainWindow>
 #include <QMessageBox>
-#include "smtp.h"
+#include "CSmtp.h"
 
 namespace Ui {
     class MainWindow_3;
@@ -17,14 +17,22 @@ class MainWindow_3 : public QMainWindow
 public:
     explicit MainWindow_3(bool bIsDebug, QWidget *parent = 0);
     ~MainWindow_3();
+    
 private slots:
-    void init(std::string strAccount, std::string strPassword);
-    void sendMail();
+    
+    // 初始化该类的槽
+    // strAccount: 账号
+    // strPassword: 密码
+    void slotInit(std::string strAccount, std::string strPassword);
+    
+    // 发送邮件的槽
+    void slotSendMail();
+    
 private:
-    Ui::MainWindow_3 *ui;
-    bool bIsDebug;
-    std::string account;
-    std::string password;
+    Ui::MainWindow_3 *ui; // 界面元素指针
+    bool bIsDebug; // 是否输出调试信息
+    std::string strAccount; // 邮箱账号
+    std::string strPassword; // 邮箱密码
 };
 
 #endif // MAINWINDOW_3_H

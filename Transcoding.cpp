@@ -1,21 +1,18 @@
 //
 //  Transcoding.cpp
-//  testcpp
+//  MailSystem
 //
 //  Created by Meteor on 16/5/30.
-//  Copyright © 2016年 meteor. All rights reserved.
+//  Copyright © 2016年 MeteorKL. All rights reserved.
 //
 
 #include "Transcoding.h"
-
-/* 代码转换示例C++程序 */
-
 #include <iostream>
 
-#define OUTLEN 255
-
 using namespace std;
-char base64_index[65] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+char cBase64Index[65] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
 char *pcfBase64Encode(const char *pcInput)
 {
     size_t ulIndex1=0,ulIndex2,ulLength;
@@ -36,21 +33,21 @@ char *pcfBase64Encode(const char *pcInput)
     ulIndex1 = 0;
     ulIndex2 = 0;
     while (ulIndex1 <= ulLength-3) {
-        pcOutput[ulIndex2++] = base64_index[( pcInput[ulIndex1] >> 2 ) & 0x3F];
-        pcOutput[ulIndex2++] = base64_index[( (pcInput[ulIndex1] << 4) & 0x30 ) | ( pcInput[ulIndex1+1] >> 4 )];
-        pcOutput[ulIndex2++] = base64_index[( (pcInput[ulIndex1+1] << 2) & 0x3C ) | ( pcInput[ulIndex1+2] >> 6 )];
-        pcOutput[ulIndex2++] = base64_index[pcInput[ulIndex1+2] & 0x3F];
+        pcOutput[ulIndex2++] = cBase64Index[( pcInput[ulIndex1] >> 2 ) & 0x3F];
+        pcOutput[ulIndex2++] = cBase64Index[( (pcInput[ulIndex1] << 4) & 0x30 ) | ( pcInput[ulIndex1+1] >> 4 )];
+        pcOutput[ulIndex2++] = cBase64Index[( (pcInput[ulIndex1+1] << 2) & 0x3C ) | ( pcInput[ulIndex1+2] >> 6 )];
+        pcOutput[ulIndex2++] = cBase64Index[pcInput[ulIndex1+2] & 0x3F];
         ulIndex1 += 3;
     }
     
     if (ulLength - ulIndex1 > 0) {
-        pcOutput[ulIndex2++] = base64_index[( pcInput[ulIndex1] >> 2 ) & 0x3F];
+        pcOutput[ulIndex2++] = cBase64Index[( pcInput[ulIndex1] >> 2 ) & 0x3F];
         if (ulLength - ulIndex1  == 2) {
-            pcOutput[ulIndex2++] = base64_index[( (pcInput[ulIndex1] << 4) & 0x30 ) | ( pcInput[ulIndex1+1] >> 4 )];
-            pcOutput[ulIndex2++] = base64_index[(pcInput[ulIndex1+1] << 2) & 0x3C];
+            pcOutput[ulIndex2++] = cBase64Index[( (pcInput[ulIndex1] << 4) & 0x30 ) | ( pcInput[ulIndex1+1] >> 4 )];
+            pcOutput[ulIndex2++] = cBase64Index[(pcInput[ulIndex1+1] << 2) & 0x3C];
             pcOutput[ulIndex2++] = '=';
         } else if (ulLength - ulIndex1  == 1) {
-            pcOutput[ulIndex2++] = base64_index[(pcInput[ulIndex1] << 4) & 0x30];
+            pcOutput[ulIndex2++] = cBase64Index[(pcInput[ulIndex1] << 4) & 0x30];
             pcOutput[ulIndex2++] = '=';
             pcOutput[ulIndex2++] = '=';
         }
@@ -60,33 +57,31 @@ char *pcfBase64Encode(const char *pcInput)
     return pcOutput;
 }
 
-char GetCharIndex(char cTemp) //内联函数可以省去函数调用过程，提速
-{   if((cTemp >= 'A') && (cTemp <= 'Z'))
-    return cTemp - 'A';
-else if((cTemp >= 'a') && (cTemp <= 'z'))
-    return cTemp - 'a' + 26;
-else if((cTemp >= '0') && (cTemp <= '9'))
-    return cTemp - '0' + 52;
-else if(cTemp == '+')
-    return 62;
-else if(cTemp == '/')
-    return 63;
-else if(cTemp == '=')
-    return 0;
+char cfGetCharIndex(char cTemp)
+{
+    if((cTemp >= 'A') && (cTemp <= 'Z'))
+        return cTemp - 'A';
+    else if((cTemp >= 'a') && (cTemp <= 'z'))
+        return cTemp - 'a' + 26;
+    else if((cTemp >= '0') && (cTemp <= '9'))
+        return cTemp - '0' + 52;
+    else if(cTemp == '+')
+        return 62;
+    else if(cTemp == '/')
+        return 63;
+    else if(cTemp == '=')
+        return 0;
     return 0;
 }
 
-unsigned char charToHex(char cTemp)
+unsigned char ucfCharToHex(char cTemp)
 {
-    if (cTemp>='0' && cTemp<='9') {
+    if (cTemp>='0' && cTemp<='9')
         return cTemp-'0';
-    }
-    else if (cTemp>='A' && cTemp<='Z') {
+    else if (cTemp>='A' && cTemp<='Z')
         return cTemp-'A'+10;
-    }
-    else if (cTemp>='a' && cTemp<='z') {
+    else if (cTemp>='a' && cTemp<='z')
         return cTemp-'a'+10;
-    }
     return -1;
 }
 
@@ -103,12 +98,12 @@ unsigned char *pcfQuotedPrintableDecode(const char *pcSrc, size_t ulLen)
             ulSrcLen += 3;
         }
         else{
-            if (charToHex(pcSrc[ulSrcLen+2])==(unsigned char)-1) {
-                pcDes[ulDesLen++] = (charToHex(pcSrc[ulSrcLen+1])<<4) + charToHex(pcSrc[ulSrcLen+3]);
+            if (ucfCharToHex(pcSrc[ulSrcLen+2])==(unsigned char)-1) {
+                pcDes[ulDesLen++] = (ucfCharToHex(pcSrc[ulSrcLen+1])<<4) + ucfCharToHex(pcSrc[ulSrcLen+3]);
                 ulSrcLen += 4;
             }
             else {
-                pcDes[ulDesLen++] = (charToHex(pcSrc[ulSrcLen+1])<<4) + charToHex(pcSrc[ulSrcLen+2]);
+                pcDes[ulDesLen++] = (ucfCharToHex(pcSrc[ulSrcLen+1])<<4) + ucfCharToHex(pcSrc[ulSrcLen+2]);
                 ulSrcLen += 3;
             }
         }
@@ -116,17 +111,17 @@ unsigned char *pcfQuotedPrintableDecode(const char *pcSrc, size_t ulLen)
     return pcDes;
 }
 
-bool pcfBase64Decode(char *pcDes, const char *pcSrc, size_t ulLen)   //解码函数
+bool bfBase64Decode(char *pcDes, const char *pcSrc, size_t ulLen)   //解码函数
 {   static char acCode[4];
     size_t ulDesLen = 0;
     memset(pcDes, 0, ulLen/4*3+1);
     if(ulLen % 4)        //Base64编码长度必定是4的倍数，包括'='
         return false;
     while(ulLen > 2)      //不足三个字符，忽略
-    {   acCode[0] = GetCharIndex(pcSrc[0]);
-        acCode[1] = GetCharIndex(pcSrc[1]);
-        acCode[2] = GetCharIndex(pcSrc[2]);
-        acCode[3] = GetCharIndex(pcSrc[3]);
+    {   acCode[0] = cfGetCharIndex(pcSrc[0]);
+        acCode[1] = cfGetCharIndex(pcSrc[1]);
+        acCode[2] = cfGetCharIndex(pcSrc[2]);
+        acCode[3] = cfGetCharIndex(pcSrc[3]);
         
         pcDes[ulDesLen++] = (acCode[0] << 2) | (acCode[1] >> 4);
         pcDes[ulDesLen++] = (acCode[1] << 4) | (acCode[2] >> 2);
@@ -138,48 +133,48 @@ bool pcfBase64Decode(char *pcDes, const char *pcSrc, size_t ulLen)   //解码函
     return true;
 }
 
-size_t ulItoa(int val, char* buf)
+size_t ulfItoa(long lVal, char* pcBuf)
 {
-    const unsigned int radix = 10;
-    char* p;
-    size_t a; //every digit
-    size_t len;
-    char* b; //start of the digit char
-    char temp;
-    unsigned int u;
-    p = buf;
-    if (val < 0)
+    const size_t kulRadix = 10;
+    char* pcA;
+    size_t ulA; //every digit
+    size_t ulLen;
+    char* pcB; //start of the digit char
+    char cTemp;
+    size_t ulT;
+    pcA = pcBuf;
+    if (lVal < 0)
     {
-        *p++ = '-';
-        val = 0 - val;
+        *pcA++ = '-';
+        lVal = 0 - lVal;
     }
-    u = (unsigned int)val;
-    b = p;
+    ulT = (unsigned int)lVal;
+    pcB = pcA;
     do
     {
-        a = u % radix;
-        u /= radix;
-        *p++ = a + '0';
-    } while (u > 0);
-    len = (int)(p - buf);
-    *p-- = 0;
+        ulA = ulT % kulRadix;
+        ulT /= kulRadix;
+        *pcA++ = ulA + '0';
+    } while (ulT > 0);
+    ulLen = (int)(pcA - pcBuf);
+    *pcA-- = 0;
     //swap
     do
     {
-        temp = *p;
-        *p = *b;
-        *b = temp;
-        --p;
-        ++b;
-    } while (b < p);
-    return len;
+        cTemp = *pcA;
+        *pcA = *pcB;
+        *pcB = cTemp;
+        --pcA;
+        ++pcB;
+    } while (pcB < pcA);
+    return ulLen;
 }
 
-bool bfCodingConvert(char *pcInBuf,size_t ulInLen,char *pcOutbuf,size_t ulOutLen, const char *pcFromCharset, const char *pcToCharset) {
+bool bfCodingConvert(char *pcInBuf,size_t ulInLen,char *pcOutBuf,size_t ulOutLen, const char *pcFromCharset, const char *pcToCharset) {
     char **ppcIn = &pcInBuf;
-    char **ppcOut = &pcOutbuf;
+    char **ppcOut = &pcOutBuf;
     size_t ulLen;
-    memset(pcOutbuf,0,ulOutLen);
+    memset(pcOutBuf,0,ulOutLen);
     iconv_t cd = iconv_open(pcToCharset, pcFromCharset);
     if (cd == (iconv_t)-1) return false;
     ulLen = iconv(cd,ppcIn,(size_t *)&ulInLen,ppcOut,(size_t *)&ulOutLen);

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5729FE2B125DEF0FEE2B28AB"
+               BlueprintIdentifier = "A6B8EFCA928D184789D52BF9"
                BuildableName = "qt_xcode_project.app"
                BlueprintName = "qt_xcode_project"
                ReferencedContainer = "container:qt_xcode_project.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5729FE2B125DEF0FEE2B28AB"
+            BlueprintIdentifier = "A6B8EFCA928D184789D52BF9"
             BuildableName = "qt_xcode_project.app"
             BlueprintName = "qt_xcode_project"
             ReferencedContainer = "container:qt_xcode_project.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5729FE2B125DEF0FEE2B28AB"
+            BlueprintIdentifier = "A6B8EFCA928D184789D52BF9"
             BuildableName = "qt_xcode_project.app"
             BlueprintName = "qt_xcode_project"
             ReferencedContainer = "container:qt_xcode_project.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5729FE2B125DEF0FEE2B28AB"
+            BlueprintIdentifier = "A6B8EFCA928D184789D52BF9"
             BuildableName = "qt_xcode_project.app"
             BlueprintName = "qt_xcode_project"
             ReferencedContainer = "container:qt_xcode_project.xcodeproj">

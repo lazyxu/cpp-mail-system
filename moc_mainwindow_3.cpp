@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_3_t {
     QByteArrayData data[7];
-    char stringdata[64];
+    char stringdata[72];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,15 +30,15 @@ struct qt_meta_stringdata_MainWindow_3_t {
 static const qt_meta_stringdata_MainWindow_3_t qt_meta_stringdata_MainWindow_3 = {
     {
 QT_MOC_LITERAL(0, 0, 12),
-QT_MOC_LITERAL(1, 13, 4),
-QT_MOC_LITERAL(2, 18, 0),
-QT_MOC_LITERAL(3, 19, 11),
-QT_MOC_LITERAL(4, 31, 10),
-QT_MOC_LITERAL(5, 42, 11),
-QT_MOC_LITERAL(6, 54, 8)
+QT_MOC_LITERAL(1, 13, 8),
+QT_MOC_LITERAL(2, 22, 0),
+QT_MOC_LITERAL(3, 23, 11),
+QT_MOC_LITERAL(4, 35, 10),
+QT_MOC_LITERAL(5, 46, 11),
+QT_MOC_LITERAL(6, 58, 12)
     },
-    "MainWindow_3\0init\0\0std::string\0"
-    "strAccount\0strPassword\0sendMail\0"
+    "MainWindow_3\0slotInit\0\0std::string\0"
+    "strAccount\0strPassword\0slotSendMail\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -71,8 +71,8 @@ void MainWindow_3::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     if (_c == QMetaObject::InvokeMetaMethod) {
         MainWindow_3 *_t = static_cast<MainWindow_3 *>(_o);
         switch (_id) {
-        case 0: _t->init((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
-        case 1: _t->sendMail(); break;
+        case 0: _t->slotInit((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
+        case 1: _t->slotSendMail(); break;
         default: ;
         }
     }
