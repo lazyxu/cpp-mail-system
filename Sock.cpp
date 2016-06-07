@@ -7,20 +7,6 @@
 
 #include "Sock.h"
 
-Sock::Sock()
-{
-    num = 0;
-    hp = (struct hostent *) 0;
-	sock= socket(AF_INET, SOCK_STREAM, 0);
-    if(sock == -1)
-    {
-        throw std::runtime_error("socketinit error\n");
-    }
-}
-Sock::~Sock()
-{
-    close(sock);
-}
 bool Sock::Connect(const char *host_id, const int &port)
 {
     server.sin_family = AF_INET;
@@ -55,18 +41,4 @@ long Sock::recvline_socket()
         }
     }
     return i;
-}
-
-void Sock::send_socket(const char *s)
-{
-    send(sock, s, strlen(s), 0);
-}
-long Sock::recv_socket()
-{
-    memset(recvbuf,0,BUFSIZ);
-    return recv(sock, recvbuf, BUFSIZ, 0);
-}
-const char * Sock::get_recvbuf()
-{
-    return recvbuf;
 }

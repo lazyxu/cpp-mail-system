@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[9];
-    char stringdata[84];
+    QByteArrayData data[8];
+    char stringdata[75];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,13 +35,11 @@ QT_MOC_LITERAL(2, 27, 0),
 QT_MOC_LITERAL(3, 28, 11),
 QT_MOC_LITERAL(4, 40, 7),
 QT_MOC_LITERAL(5, 48, 8),
-QT_MOC_LITERAL(6, 57, 8),
-QT_MOC_LITERAL(7, 66, 10),
-QT_MOC_LITERAL(8, 77, 5)
+QT_MOC_LITERAL(6, 57, 10),
+QT_MOC_LITERAL(7, 68, 5)
     },
     "MainWindow\0loginSuccessful\0\0std::string\0"
-    "account\0password\0bIsDebug\0loginCheck\0"
-    "close\0"
+    "account\0password\0loginCheck\0close\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -59,14 +57,14 @@ static const uint qt_meta_data_MainWindow[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    3,   29,    2, 0x06,
+       1,    2,   29,    2, 0x06,
 
  // slots: name, argc, parameters, tag, flags
-       7,    0,   36,    2, 0x08,
-       8,    0,   37,    2, 0x08,
+       6,    0,   34,    2, 0x08,
+       7,    0,   35,    2, 0x08,
 
  // signals: parameters
-    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3, QMetaType::Bool,    4,    5,    6,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    4,    5,
 
  // slots: parameters
     QMetaType::Void,
@@ -80,7 +78,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     if (_c == QMetaObject::InvokeMetaMethod) {
         MainWindow *_t = static_cast<MainWindow *>(_o);
         switch (_id) {
-        case 0: _t->loginSuccessful((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3]))); break;
+        case 0: _t->loginSuccessful((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
         case 1: _t->loginCheck(); break;
         case 2: _t->close(); break;
         default: ;
@@ -89,7 +87,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (MainWindow::*_t)(std::string , std::string , bool );
+            typedef void (MainWindow::*_t)(std::string , std::string );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow::loginSuccessful)) {
                 *result = 0;
             }
@@ -134,9 +132,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MainWindow::loginSuccessful(std::string _t1, std::string _t2, bool _t3)
+void MainWindow::loginSuccessful(std::string _t1, std::string _t2)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

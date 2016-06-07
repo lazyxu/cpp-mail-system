@@ -6,13 +6,6 @@
 
 #include "smtp.h"
 
-smtp::smtp(string strAddress, string strAassword)
-{
-	string strSmtp = "smtp.163.com";
-    this->strSmtp = strSmtp;
-	this->strMailAddress = strAddress;
-	this->strMailPassword = strAassword;
-}
 bool smtp::bfLoginSmtp(bool bIsDebug)
 {
 	if ( bIsDebug ) std::cout<< strSmtp.c_str();

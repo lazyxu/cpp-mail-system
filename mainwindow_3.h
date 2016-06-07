@@ -1,9 +1,9 @@
 #ifndef MAINWINDOW_3_H
 #define MAINWINDOW_3_H
 
-#include <QMainWindow>
 #include <iostream>
-#include "QMessageBox"
+#include <QMainWindow>
+#include <QMessageBox>
 #include "smtp.h"
 
 namespace Ui {
@@ -15,12 +15,11 @@ class MainWindow_3 : public QMainWindow
     Q_OBJECT
     
 public:
-    explicit MainWindow_3(QWidget *parent = 0);
+    explicit MainWindow_3(bool bIsDebug, QWidget *parent = 0);
     ~MainWindow_3();
 private slots:
-    void init(std::string strAccount, std::string strPassword, bool bIsDebug);
+    void init(std::string strAccount, std::string strPassword);
     void sendMail();
-    //void sendMail(std::string name, std::string address, std::string password);
 private:
     Ui::MainWindow_3 *ui;
     bool bIsDebug;

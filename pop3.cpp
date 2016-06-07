@@ -6,26 +6,26 @@
 
 #include "pop3.h"
 
-bool pop3::bfLoginPop3(bool bIsDebug)
+bool pop3::bfLoginPop3()
 {
-    if ( bIsDebug ) std::cout<< strPop3.c_str();
+    if (bIsDebug) cout<< strPop3.c_str();
     int16_t sPop3Port = 110;//pop3协议专用端口
     if(sockReceiveMail.Connect(strPop3.c_str(), sPop3Port) == false)
         return false;
-    if (bIsDebug) std::cout << "connected\n";
+    if (bIsDebug) cout << "connected\n";
     sockReceiveMail.recv_socket();
-    if (bIsDebug) std::cout << "Client:connect successfully! \nServer:"
-        << sockReceiveMail.get_recvbuf() << std::endl;
+    if (bIsDebug) cout << "Client:connect successfully! \nServer:"
+        << sockReceiveMail.get_recvbuf() << endl;
     
     sockReceiveMail.send_socket(("user " + this->strMailAddress + "\r\n").c_str());//输入邮箱用户名
     sockReceiveMail.recv_socket();
-    if (bIsDebug) std::cout << "Client : send name \nServer:"
-        << sockReceiveMail.get_recvbuf() << std::endl;
+    if (bIsDebug) cout << "Client : send name \nServer:"
+        << sockReceiveMail.get_recvbuf() << endl;
     
     sockReceiveMail.send_socket(("pass " + this->strMailPassword + "\r\n").c_str());//邮箱密码
     sockReceiveMail.recv_socket();
-    if (bIsDebug) std::cout << "Client : send password \n Server ："
-        << sockReceiveMail.get_recvbuf() << std::endl;
+    if (bIsDebug) cout << "Client : send password \n Server ："
+        << sockReceiveMail.get_recvbuf() << endl;
     return true;
 }
 
@@ -43,19 +43,23 @@ size_t get_long(char *pcTemp, size_t &ulTempIndex)
     return ulIndex;
 }
 
-size_t *list_to_array(char *pcTemp, size_t &ulTempIndex)
+size_t ulfGetMailNum(char *pcTemp)
 {
-    size_t ulIndex1 = 0;
-    size_t ulIndex2;
-    size_t *pulMailSize, ulMailSize;
-    ulTempIndex = get_long(pcTemp, ulIndex1);
-    printf("n:%ld i:%lu ", ulTempIndex, ulIndex1);
-    pulMailSize = (size_t *)malloc(sizeof(size_t)*(ulTempIndex+1));
-    pulMailSize[0] = get_long(pcTemp, ulIndex1);
-    for (ulIndex2=0; ulIndex2<ulTempIndex; ulIndex2++) {
-        ulMailSize = get_long(pcTemp, ulIndex1);
-        pulMailSize[ulMailSize] = get_long(pcTemp, ulIndex1);
-        printf("n:%ld \n", pulMailSize[ulMailSize]);
+    size_t ulIndex = 0;
+    size_t ulNum;
+    ulNum = get_long(pcTemp, ulIndex);
+    return ulNum;
+}
+
+size_t *ulfListToArray(char *pcTemp, size_t *pulMailSize, size_t ulMailNum)
+{
+    size_t ulStart = 0;
+    size_t ulIndex;
+    size_t ulMailIndex;
+    ulStart = string(pcTemp).find("\r\n")+2;
+    for (ulIndex=0; ulIndex<ulMailNum; ulIndex++) {
+        ulMailIndex = get_long(pcTemp, ulStart) - 1;
+        pulMailSize[ulMailIndex] = get_long(pcTemp, ulStart);
     }
     return pulMailSize;
 }
@@ -97,17 +101,10 @@ bool bfLineData(string &strTemp, string strMail, string strClass)
         strTemp = acTemp;
         strFromCharset = strfSkipIllegal(strFromCharset);
         if (strFromCharset.compare("UTF-8") != 0) {
-            char *temp = (char *)malloc(sizeof(char)*strTemp.length());
-            memset(temp, 0, strTemp.length());
-            strcpy(temp, strTemp.c_str());
-            char *temp1 = (char *)malloc(sizeof(char)*strTemp.length()*2);
+            char *temp1 = new char[strTemp.length()*2];
             memset(temp1, 0, strTemp.length()*2);
-            bfCodingConvert(temp, strlen(temp), temp1, strTemp.length()*2, strFromCharset.c_str(), "utf-8");
+            bfCodingConvert((char *)strTemp.c_str(), strTemp.length(), temp1, strTemp.length()*2, strFromCharset.c_str(), "utf-8");
             strTemp = temp1;
-            //            string strOut;
-            //            strOut.resize(strTemp.length()*2+1, 0);
-            //            bfCodingConvert((char *)strTemp.c_str(), strTemp.length(), (char *)strOut.c_str(), strOut.length(), strFromCharset.c_str(), "utf-8");
-            //            strTemp = strOut;
         }
         ulStart = strMail.find("<", ulStart);
         if (ulStart > ulEnd) {
@@ -185,40 +182,10 @@ void getMailInfo(mail &mailRev, string strMail, size_t ulSize)
                 strContent = string((char *)pcfQuotedPrintableDecode(strContent.c_str(), strContent.length()));
             }
         }
-        //        if ((ulEnd=strMail.find("Content-Transfer-Encoding: base64", ulStart))!=(size_t)-1) {
-        //            ulStart = ulEnd + 33;
-        //            ulStart = strMail.find("\r\n\r\n", ulStart);
-        //            ulStart += 4;
-        //            ulEnd = strMail.find("\r\n", ulStart);
-        //            strContent = strMail.substr(ulStart, ulEnd-ulStart);
-        //            pcfBase64Decode(acTemp, strContent.c_str(), strContent.length());
-        //            strContent = acTemp;
-        //        }
-        //        else if ((ulEnd=strMail.find("Content-Transfer-Encoding: base64", ulStart))!=(size_t)-1) {
-        //            ulStart = ulEnd + 33;
-        //            ulStart = strMail.find("\r\n\r\n", ulStart);
-        //            ulStart += 4;
-        //            ulEnd = strMail.find("\r\n", ulStart);
-        //            strContent = strMail.substr(ulStart, ulEnd-ulStart);
-        //            pcfBase64Decode(acTemp, strContent.c_str(), strContent.length());
-        //            strContent = acTemp;
-        //        }
-        //        else if ((ulEnd=strMail.find("Content-Transfer-Encoding: quoted-printable", ulStart))!=(size_t)-1) {
-        //            ulStart = ulEnd + 33;
-        //            ulStart = strMail.find("\r\n\r\n", ulStart);
-        //            ulStart += 4;
-        //            ulEnd = strMail.find("\r\n.\r\n", ulStart);
-        //            strContent = strMail.substr(ulStart, ulEnd-ulStart);
-        //            strContent = string((char *)pcfQuotedPrintableDecode(strContent.c_str(), strContent.length()));
-        //        }
-        
         if (strFromCharset.compare("utf-8")!=0) {
-            char *temp = (char *)malloc(sizeof(char)*strContent.length());
-            memset(temp, 0, strContent.length());
-            strcpy(temp, strContent.c_str());
-            char *temp1 = (char *)malloc(sizeof(char)*strContent.length()*2);
+            char *temp1 = new char[strContent.length()*2];
             memset(temp1, 0, strContent.length()*2);
-            bfCodingConvert(temp, strlen(temp), temp1, strContent.length()*2, strFromCharset.c_str(), "utf-8");
+            bfCodingConvert((char *)strContent.c_str(), strContent.length(), temp1, strContent.length()*2, strFromCharset.c_str(), "utf-8");
             strContent = temp1;
         }
     }
@@ -235,75 +202,61 @@ void getMailInfo(mail &mailRev, string strMail, size_t ulSize)
     mailRev.setMail(strFrom, strTo, strTitle, strContent, strDate, type, ulSize);
 }
 
-mail *pop3::pmailReceiveMail(bool bIsDebug, size_t &ulIndex)
+mail *pop3::pmailReceiveMail(size_t &ulRevMailNum)
 {
     sockReceiveMail.send_socket("stat\r\n");
     sockReceiveMail.recv_socket();
-    if (bIsDebug) std::cout << "Client : send stat \nServer : "
-        << sockReceiveMail.get_recvbuf() << std::endl;
+    if (bIsDebug) cout << "Client : send stat \nServer : "
+        << sockReceiveMail.get_recvbuf() << endl;
     
     sockReceiveMail.send_socket("list\r\n");
     sockReceiveMail.recv_socket();
     const char *pcRecv = sockReceiveMail.get_recvbuf();
-    if (bIsDebug) std::cout << "Client : send list \nServer :"  << pcRecv << std::endl;
-    size_t *ulRevMailSize;
-    ulRevMailSize = list_to_array((char *)pcRecv, ulIndex);
-    //下面的while循环有些问题，目前还没有想到解决方法。以后改正！
-    int32_t lIndex=1;
-    //while (1)
+    if (bIsDebug) cout << "Client : send list \nServer :"  << pcRecv << endl;
+    ulRevMailNum = ulfGetMailNum((char *)pcRecv);
+    size_t *ulRevMailSize = new size_t[ulRevMailNum];
+    ulfListToArray((char *)pcRecv, ulRevMailSize, ulRevMailNum);
     size_t ulLen;
     char acIndex[10];
-    mail *pmailRev = new mail[ulIndex];
-    for (lIndex=1; lIndex<=(int32_t)ulIndex; lIndex++)
+    mail *pmailRev = new mail[ulRevMailNum];
+    for (int32_t lIndex=0; lIndex<(int32_t)ulRevMailNum; lIndex++)
     {
-        ulItoa(lIndex, acIndex);
+        ulItoa(lIndex+1, acIndex);
         //cIndex=itoa(lIndex);
-        if (bIsDebug) std::cout << "---------------------------------------------------------------------------";
-        if (bIsDebug) std::cout << ((string)"retr "+(string)acIndex+(string)"\r\n").c_str();
+        if (bIsDebug) cout << "---------------------------------------------------------------------------";
+        if (bIsDebug) cout << ((string)"retr "+(string)acIndex+(string)"\r\n").c_str();
         sockReceiveMail.send_socket(((string)"retr "+(string)acIndex+(string)"\r\n").c_str());
         sockReceiveMail.recvline_socket();
         const char *recv = sockReceiveMail.get_recvbuf();
-        if (bIsDebug) std::cout << "Client : " << ((string)"retr "+(string)acIndex+(string)"\r\n").c_str() <<
+        if (bIsDebug) cout << "Client : " << ((string)"retr "+(string)acIndex+(string)"\r\n").c_str() <<
             "Server :" << recv  << endl;
-        //        len = 0;
-        //        while (len < mail_rev[i]) {
-        //            //do{
-        //            cout << "[" << len << "/" << mail_rev[i] << "]" ;
-        //            len = len + sockReceiveMail.recv_socket();
-        //            cout << "->[" << len << "/" << mail_rev[i] << "]" ;
-        //            recv = sockReceiveMail.get_recvbuf();
-        //            if (IsDebug) std::cout << recv << endl;
-        //            //}while (!is_end(recv, len));
-        //        }
-        //        cout << "[" << len << "/" << mail_rev[i] << "]" ;
-        
         ulLen = 0;
-        size_t ulRevSize = ulRevMailSize[lIndex] + 3;
+        long lRevSize = ulRevMailSize[lIndex] + 3;
         string strRevMailContent = "";
         //cout << "[" << ulLen << "/" << ulRevMailSize[lIndex] + 3 << "]" ;
-        while (ulRevSize>0) {
-            size_t ulRet = sockReceiveMail.recv_socket();
-            if (ulRet > 0)
+        while (lRevSize>0) {
+            long lRet = sockReceiveMail.recv_socket();
+            if (lRet > 0)
             {
-                ulLen += ulRet;
-                ulRevSize -= ulRet;
+                ulLen += lRet;
+                lRevSize -= lRet;
             }
             else
                 break;
             //cout << "->[" << ulLen << "/" << ulRevMailSize[lIndex] + 3 << "]" ;
             recv = sockReceiveMail.get_recvbuf();
             strRevMailContent += recv;
-            //if (IsDebug) std::cout << recv << endl;
+            //if (bIsDebug) cout << recv << endl;
         }
-        //if (IsDebug) std::cout << revMailContent << endl << "[" << len << "/" << mail_rev[i] + 3 << "]" << endl;
-        getMailInfo(pmailRev[lIndex-1], strRevMailContent, ulRevMailSize[lIndex] + 3);
-        cout << "mail " << lIndex << ":" << endl;
-        pmailRev[lIndex-1].showMail();
+        //if (IsDebug) if (bIsDebug) cout << revMailContent << endl << "[" << len << "/" << mail_rev[i] + 3 << "]" << endl;
+        getMailInfo(pmailRev[lIndex], strRevMailContent, ulRevMailSize[lIndex] + 3);
+        if (bIsDebug) cout << "mail " << lIndex+1 << ":" << endl;
+        if (bIsDebug) pmailRev[lIndex].showMail();
     }
-    
+    delete[] ulRevMailSize;
     sockReceiveMail.send_socket("quit\r\n");
     sockReceiveMail.recv_socket();
-    if (bIsDebug) std::cout << "Client : send quit \nServer :"
-        << sockReceiveMail.get_recvbuf() << std::endl;
+    if (bIsDebug) cout << "Client : send quit \nServer :"
+        << sockReceiveMail.get_recvbuf() << endl;
     return pmailRev;
 }

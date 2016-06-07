@@ -1,9 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include <iostream>
-#include "QMessageBox"
+#include <QMainWindow>
+#include <QMessageBox>
 #include "pop3.h"
 
 namespace Ui {
@@ -18,7 +18,7 @@ public:
     explicit MainWindow(bool bIsDebug, QWidget *parent = 0);
     ~MainWindow();
 signals:
-    void loginSuccessful(std::string account, std::string password, bool bIsDebug);
+    void loginSuccessful(std::string account, std::string password);
 private slots:
     void loginCheck();
     void close();

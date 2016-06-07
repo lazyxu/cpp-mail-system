@@ -7,26 +7,6 @@
 //
 
 #include "mail.h"
-mail::mail(){
-    this->strFrom = "(无)";
-    this->strDate = "(无)";
-    this->strTitle = "(无)";
-    this->strTo = "(无)";
-    this->strContent = "(无)";
-    this->ulSize = 0;
-}
-
-string mail::info()
-{
-    string strMailInfo;
-    if (strFrom.c_str()[0]!=0)
-        strMailInfo += strFrom + "\n";
-    if (strDate.c_str()[0]!=0)
-        strMailInfo += strDate + "\n";
-    if (strTitle.c_str()[0]!=0)
-        strMailInfo += strTitle + "\n";
-    return strMailInfo;
-}
 
 string mail::fullInfo()
 {
@@ -58,11 +38,6 @@ string mail::fullInfo()
     return strMailFullInfo;
 }
 
-string mail::getType()
-{
-    return strType;
-}
-
 void mail::setMail(string strFrom, string strTo, string strTitle, string strContent, string strDate, string strType, size_t ulSize)
 {
     if (strFrom.c_str()[0]!=0)
@@ -77,14 +52,4 @@ void mail::setMail(string strFrom, string strTo, string strTitle, string strCont
         this->strContent = strContent;
     this->strType = strType;
     this->ulSize = ulSize;
-}
-
-void mail::showMail()
-{
-    cout << "from: " << strFrom << endl
-         << "to: " << strTo << endl
-         << "Date: " << strDate << endl
-         << "size: " << ulSize << " byte" << endl
-         << "title: " << strTitle << endl
-    << "content: " << endl << strContent << endl << endl;
 }

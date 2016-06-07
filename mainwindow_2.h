@@ -1,10 +1,10 @@
 #ifndef MAINWINDOW_2_H
 #define MAINWINDOW_2_H
 
-#include <QMainWindow>
-#include "mail.h"
 #include <iostream>
-#include "QMessageBox"
+#include <QMainWindow>
+#include <QMessageBox>
+#include "mail.h"
 #include "pop3.h"
 
 namespace Ui {
@@ -16,12 +16,12 @@ class MainWindow_2 : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow_2(QWidget *parent = 0);
+    explicit MainWindow_2(bool bIsDebug, QWidget *parent = 0);
     ~MainWindow_2();
 signals:
-    void sWriteMail(std::string strAccount, std::string strPassword, bool bIsDebug);
+    void sWriteMail(std::string strAccount, std::string strPassword);
 private slots:
-    void init(std::string strAccount, std::string strPassword, bool bIsDebug);
+    void init(std::string strAccount, std::string strPassword);
     void revMail();
     void writeMail();
     void showRevMail();

@@ -15,7 +15,11 @@ using  namespace std;
 class smtp
 {
 public:
-	smtp(string address, string password);
+    inline smtp(string strAddress, string strAassword){
+        string strSmtp = "smtp.163.com";
+        this->strSmtp = strSmtp;
+        this->strMailAddress = strAddress;
+        this->strMailPassword = strAassword;};
 	bool bfLoginSmtp(bool IsDebug);
 	bool bfSendMail(string strFromName, string strToMailAddress, string strTitle, string strContent, bool IsDebug);
 private:
