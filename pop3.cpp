@@ -70,7 +70,7 @@ string strfSkipIllegal(string strTemp)
 {
     size_t ulIndex, ulRet = 0;
     for (ulIndex=0; ulIndex<strTemp.length(); ulIndex++) {
-        if (strTemp[ulIndex]<0x20) {
+        if (strTemp[ulIndex]==0x03 || strTemp[ulIndex]==0x0a) {
             strTemp.resize(strTemp.length()-1);
             continue;
         }
@@ -152,6 +152,7 @@ void getMailInfo(mail &mailRev, string strMail, size_t ulSize)
             ulStart = ulEnd + 4;
             ulEnd = strMail.find("\r\n.\r\n", ulStart);
             strContent = strMail.substr(ulStart, ulEnd-ulStart);
+            strContent = strfSkipIllegal(strContent);
         }
     }
     else if (flag == true) {
@@ -232,6 +233,7 @@ void getMailInfo(mail &mailRev, string strMail, size_t ulSize)
             ulStart = ulEnd + 4;
             ulEnd = strMail.find("\r\n.\r\n", ulStart);
             strContent = strMail.substr(ulStart, ulEnd-ulStart);
+            strContent = strfSkipIllegal(strContent);
         }
     }
     
