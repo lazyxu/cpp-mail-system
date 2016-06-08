@@ -19,24 +19,44 @@ void MainWindow_2::slotRevMail()
     }
     ui->revMail_list->clear();
     pmailRev = 0;
-    unsigned long ulIndex;
+    size_t ulIndex;
     CPop3 pop3Test(strAccount, strPassword, bIsDebug);
+//    if ( pop3Test.bfLoginPop3() ) {
+//        size_t *ulRevMailSize = pop3Test.pmailfRevMailNumSize(ulMailRevN);
+//        pmailRev = new CMail[ulMailRevN]; // 邮件类指针
+//        char acTemp1[10], acTemp2[10];
+//        for (ulIndex=0; ulIndex<ulMailRevN; ulIndex++) {
+//            pop3Test.bfReceiveMailContent(pmailRev, ulRevMailSize, (int32_t)ulIndex);
+//            if (bIsDebug) std::cout << QString(QString::fromLocal8Bit(pmailRev[ulIndex].strfInfo().c_str())).toStdString();
+//            ui->revMail_list->addItem(QString(QString::fromLocal8Bit(pmailRev[ulIndex].strfInfo().c_str())));
+//            ulfItoa(ulIndex, acTemp1);
+//            ulfItoa(ulMailRevN, acTemp2);
+//            ui->revMailnum_lable->setText("读取邮件中："+(QString)acTemp1+"/"+(QString)acTemp2);
+//        }
+//        delete [] ulRevMailSize;
+//        pop3Test.vfDisConnect();
+//    }
     if ( pop3Test.bfLoginPop3() )
         pmailRev = pop3Test.pmailfReceiveMail(ulMailRevN);
     for (ulIndex=0; ulIndex<ulMailRevN; ulIndex++) {
         if (bIsDebug) std::cout << QString(QString::fromLocal8Bit(pmailRev[ulIndex].strfInfo().c_str())).toStdString();
         ui->revMail_list->addItem(QString(QString::fromLocal8Bit(pmailRev[ulIndex].strfInfo().c_str())));
     }
+    ui->revMailnum_lable->setText("读取邮件完毕");
 }
 
 void MainWindow_2::slotShowRevMail()
 {
     ui->revMail_text->clear();
-    unsigned long n = ui->revMail_list->currentRow();
+    size_t n = ui->revMail_list->currentRow();
     if ( n >= ulMailRevN ) {
         return;
     }
     CMail mailCurrent = pmailRev[n];
+    char acTemp1[10], acTemp2[10];
+    ulfItoa(n+1, acTemp1);
+    ulfItoa(ulMailRevN, acTemp2);
+    ui->revMailnum_lable->setText("当前选中邮件："+(QString)acTemp1+"/"+(QString)acTemp2);
     if (mailCurrent.strfGetType().compare("text/html")==0 ) {
         ui->revMail_text->setHtml(QString(QString::fromLocal8Bit(mailCurrent.strfFullInfo().c_str())));
     }

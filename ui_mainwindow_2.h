@@ -32,13 +32,14 @@ public:
     QTextBrowser *revMail_text;
     QPushButton *writeMail_button;
     QLabel *account_label;
+    QLabel *revMailnum_lable;
 
     void setupUi(QMainWindow *MainWindow_2)
     {
         if (MainWindow_2->objectName().isEmpty())
             MainWindow_2->setObjectName(QStringLiteral("MainWindow_2"));
-        MainWindow_2->resize(1024, 768);
-        MainWindow_2->setMinimumSize(QSize(1024, 768));
+        MainWindow_2->resize(800, 600);
+        MainWindow_2->setMinimumSize(QSize(800, 600));
         MainWindow_2->setMaximumSize(QSize(1024, 768));
         MainWindow_2->setIconSize(QSize(34, 17));
         centralwidget = new QWidget(MainWindow_2);
@@ -47,7 +48,7 @@ public:
         centralwidget->setMaximumSize(QSize(1024, 768));
         revMail_list = new QListWidget(centralwidget);
         revMail_list->setObjectName(QStringLiteral("revMail_list"));
-        revMail_list->setGeometry(QRect(10, 40, 241, 691));
+        revMail_list->setGeometry(QRect(10, 40, 241, 551));
         revMail_button = new QPushButton(centralwidget);
         revMail_button->setObjectName(QStringLiteral("revMail_button"));
         revMail_button->setGeometry(QRect(10, 10, 34, 17));
@@ -59,7 +60,7 @@ public:
         revMail_button->setIconSize(QSize(34, 17));
         revMail_text = new QTextBrowser(centralwidget);
         revMail_text->setObjectName(QStringLiteral("revMail_text"));
-        revMail_text->setGeometry(QRect(260, 40, 751, 691));
+        revMail_text->setGeometry(QRect(260, 40, 531, 551));
         writeMail_button = new QPushButton(centralwidget);
         writeMail_button->setObjectName(QStringLiteral("writeMail_button"));
         writeMail_button->setGeometry(QRect(60, 10, 34, 17));
@@ -70,7 +71,13 @@ public:
         writeMail_button->setIconSize(QSize(34, 17));
         account_label = new QLabel(centralwidget);
         account_label->setObjectName(QStringLiteral("account_label"));
-        account_label->setGeometry(QRect(110, 10, 462, 16));
+        account_label->setGeometry(QRect(260, 10, 481, 18));
+        revMailnum_lable = new QLabel(centralwidget);
+        revMailnum_lable->setObjectName(QStringLiteral("revMailnum_lable"));
+        revMailnum_lable->setGeometry(QRect(111, 10, 141, 18));
+        revMailnum_lable->setFrameShadow(QFrame::Raised);
+        revMailnum_lable->setTextFormat(Qt::PlainText);
+        revMailnum_lable->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         MainWindow_2->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow_2);
@@ -80,7 +87,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow_2)
     {
-        MainWindow_2->setWindowTitle(QApplication::translate("MainWindow_2", "\346\224\266\344\277\241", 0));
+        MainWindow_2->setWindowTitle(QApplication::translate("MainWindow_2", "Mail System", 0));
         revMail_button->setText(QString());
         writeMail_button->setText(QString());
         account_label->setText(QString());

@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include "CMail.h"
 #include "CPop3.h"
+#include "Transcoding.h"
 
 namespace Ui {
     class MainWindow_2;

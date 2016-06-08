@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>cpp mail system</string>
+   <string>https://github.com/MeteorKL/cpp-mail-system</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QCheckBox" name="checkBox">

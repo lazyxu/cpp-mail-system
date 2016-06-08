@@ -22,17 +22,17 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 //    测试pop3收邮件
-//    size_t ulMailNum;
+//    size_t ulMailNum = 0;
 //    bool bIsDebug = true;
 //    CPop3 pop3Test("qqq1051814353@163.com", "qqq1051814353", bIsDebug);
 //    if ( pop3Test.bfLoginPop3() )
-//        mailRev = pop3Test.pmailfReceiveMail(mailRevN);
+//        pop3Test.pmailfReceiveMail(ulMailNum);
     
 //    测试smtp发邮件
 //    bool bIsDebug = true;
-//    CSmtp smtpTest("qqq1051814353@163.com", "qqq1051814353");
-//    if ( smtpTest.bfLoginSmtp(bIsDebug) ) {
-//        if ( smtpTest.bfSendMail("MeteorKL", "1051814353@qq.com", "这不是垃圾邮件", "这不是垃圾邮件", bIsDebug) )
+//    CSmtp smtpTest("qqq1051814353@163.com", "qqq1051814353", bIsDebug);
+//    if ( smtpTest.bfLoginSmtp() ) {
+//        smtpTest.bfSendMail("MeteorKL", "1051814353@qq.com", "这不是垃圾邮件", "这不是垃圾邮件");
     
 //    qt图形界面
     QApplication a(argc, argv); // 创建一个qt应用

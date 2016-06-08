@@ -89,16 +89,13 @@ size_t ulfGetMailNum(char *pcTemp)
 // pcTemp: 输入字符串
 // pulMailSize: 邮件大小数组
 // ulMailNum: 邮件数量
-void ulfListToArray(char *pcTemp, size_t *pulMailSize, size_t ulMailNum)
+void ulfListToArray(char *pcTemp, size_t *pulMailSize)
 {
     size_t ulStart = 0;
-    size_t ulIndex;
     size_t ulMailIndex;
-    ulStart = string(pcTemp).find("\r\n")+2;
-    for (ulIndex=0; ulIndex<ulMailNum; ulIndex++) {
-        ulMailIndex = ulfGetLong(pcTemp, ulStart) - 1;
-        pulMailSize[ulMailIndex] = ulfGetLong(pcTemp, ulStart);
-    }
+    ulMailIndex = ulfGetLong(pcTemp, ulStart) - 1;
+    pulMailSize[ulMailIndex] = ulfGetLong(pcTemp, ulStart);
+
 }
 
 // 过滤莫名其妙出现的字符，例如0x03，0x0a
@@ -250,19 +247,101 @@ void vGetMailInfo(CMail &mailRev, string strMail, size_t ulSize)
     mailRev.vSetMail(strFrom, strTo, strTitle, strContent, strDate, type, ulSize);
 }
 
+//size_t *CPop3::pmailfRevMailNumSize(size_t &ulRevMailNum)
+//{
+//    // 获取邮件列表
+//    sockReceiveMail.send_socket("list\r\n");
+//    
+//    // 获取邮件数量
+//    sockReceiveMail.recvline_socket();
+//    char *pcRecv = (char *)sockReceiveMail.get_recvbuf();
+//    if (bIsDebug) cout << "Client : send list \nServer :"  << pcRecv << endl;
+//    
+//    ulRevMailNum = ulfGetMailNum(pcRecv);
+//    
+//    // 获取每个邮件的大小
+//    size_t *ulRevMailSize = new size_t[ulRevMailNum]; // 每个邮件的大小
+//    for (size_t i=0; i<ulRevMailNum; i++) {
+//        sockReceiveMail.recvline_socket();
+//        pcRecv = (char *)sockReceiveMail.get_recvbuf();
+//        ulfListToArray(pcRecv, ulRevMailSize);
+//        if (bIsDebug) cout << pcRecv << endl;
+//    }
+//    return ulRevMailSize;
+//}
+//
+//bool CPop3::bfReceiveMailContent(CMail *pmailRev, size_t *ulRevMailSize, int32_t lIndex)
+//{
+//    size_t ulRev;  // 已接收到的字节数
+//    char acIndex[10]; // 邮件下标（转化为字符串）
+//    ulfItoa(lIndex+1, acIndex); // 数字转化为字符串
+//    
+//    // 读取第 lIndex 封邮件
+//    sockReceiveMail.send_socket(((string)"retr "+(string)acIndex+(string)"\r\n").c_str());
+//    sockReceiveMail.recvline_socket();
+//    if (bIsDebug) cout << "---------------------------------------------------------------------------"
+//        << ((string)"retr "+(string)acIndex+(string)"\r\n").c_str();
+//    if (bIsDebug) cout << "Client : " << ((string)"retr "+(string)acIndex+(string)"\r\n").c_str() <<
+//        "Server :" << sockReceiveMail.get_recvbuf()  << endl;
+//    
+//    // 读取第 lIndex 封邮件
+//    ulRev = 0;
+//    long lRetSize = ulRevMailSize[lIndex] + 3;
+//    string strRevMailContent = "";
+//    //cout << "[" << ulLen << "/" << ulRevMailSize[lIndex] + 3 << "]" ;
+//    while (lRetSize>0) {
+//        long lTemp = sockReceiveMail.recv_socket();
+//        if (lTemp > 0)
+//        {
+//            ulRev += lTemp;
+//            lRetSize -= lTemp;
+//        }
+//        else
+//            return false;
+//        //cout << "->[" << ulLen << "/" << ulRevMailSize[lIndex] + 3 << "]" ;
+//        strRevMailContent += sockReceiveMail.get_recvbuf();
+//        //if (bIsDebug) cout << recv << endl;
+//    }
+//    
+//    // 分析邮件内容，提取出发件人，收件人，标题，正文等
+//    cout << strRevMailContent << endl;
+//    vGetMailInfo(pmailRev[lIndex], strRevMailContent, ulRevMailSize[lIndex] + 3);
+//    if (bIsDebug) cout << "mail " << lIndex+1 << ":" << endl;
+//    if (bIsDebug) pmailRev[lIndex].vShowMail();
+//    
+//    return true;
+//}
+//
+//void CPop3::vfDisConnect()
+//{
+//    // 断开和服务器的连接
+//    sockReceiveMail.send_socket("quit\r\n");
+//    sockReceiveMail.recv_socket();
+//    if (bIsDebug) cout << "Client : send quit \nServer :"
+//                    << sockReceiveMail.get_recvbuf() << endl;
+//}
+
 CMail *CPop3::pmailfReceiveMail(size_t &ulRevMailNum)
 {
     // 获取邮件列表
     sockReceiveMail.send_socket("list\r\n");
-    sockReceiveMail.recv_socket();
-    const char *pcRecv = sockReceiveMail.get_recvbuf();
+    
+    // 获取邮件数量，
+    sockReceiveMail.recvline_socket();
+    char *pcRecv = (char *)sockReceiveMail.get_recvbuf();
     if (bIsDebug) cout << "Client : send list \nServer :"  << pcRecv << endl;
     
-    // 获取邮件数量，每个邮件的大小，初始化邮件类指针
-    ulRevMailNum = ulfGetMailNum((char *)pcRecv);
+    ulRevMailNum = ulfGetMailNum(pcRecv);
+    
+    // 获取每个邮件的大小，初始化邮件类指针
     size_t *ulRevMailSize = new size_t[ulRevMailNum]; // 每个邮件的大小
-    ulfListToArray((char *)pcRecv, ulRevMailSize, ulRevMailNum);
     CMail *pmailRev = new CMail[ulRevMailNum]; // 邮件类指针
+    for (size_t i=0; i<ulRevMailNum; i++) {
+        sockReceiveMail.recvline_socket();
+        pcRecv = (char *)sockReceiveMail.get_recvbuf();
+        ulfListToArray(pcRecv, ulRevMailSize);
+        if (bIsDebug) cout << pcRecv << endl;
+    }
     
     size_t ulRev;  // 已接收到的字节数
     char acIndex[10]; // 邮件下标（转化为字符串）

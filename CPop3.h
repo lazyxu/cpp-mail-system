@@ -29,7 +29,10 @@ public:
     // 接收邮件
     // 返回邮件类指针
     // &ulRevMailNum: 邮件数量，输入输出参数
-	CMail *pmailfReceiveMail(size_t &ulRevMailNum);
+    CMail *pmailfReceiveMail(size_t &ulRevMailNum);
+//    size_t *pmailfRevMailNumSize(size_t &ulRevMailNum);
+//    bool bfReceiveMailContent(CMail *pmailRev, size_t *ulRevMailSize, int32_t lIndex);
+//    void vfDisConnect();
     
 private:
     bool bIsDebug; // 是否输出调试信息

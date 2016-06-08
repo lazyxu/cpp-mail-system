@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9CC50E73FEADCBDCDA80354F"
+               BlueprintIdentifier = "7E0C39E2656CD2FCE7683897"
                BuildableName = "MailSystem.app"
                BlueprintName = "MailSystem"
                ReferencedContainer = "container:MailSystem.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9CC50E73FEADCBDCDA80354F"
+            BlueprintIdentifier = "7E0C39E2656CD2FCE7683897"
             BuildableName = "MailSystem.app"
             BlueprintName = "MailSystem"
             ReferencedContainer = "container:MailSystem.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9CC50E73FEADCBDCDA80354F"
+            BlueprintIdentifier = "7E0C39E2656CD2FCE7683897"
             BuildableName = "MailSystem.app"
             BlueprintName = "MailSystem"
             ReferencedContainer = "container:MailSystem.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9CC50E73FEADCBDCDA80354F"
+            BlueprintIdentifier = "7E0C39E2656CD2FCE7683897"
             BuildableName = "MailSystem.app"
             BlueprintName = "MailSystem"
             ReferencedContainer = "container:MailSystem.xcodeproj">
