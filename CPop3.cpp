@@ -51,10 +51,14 @@ bool CPop3::bfLoginPop3()
     // 发送密码
     sockReceiveMail.send_socket(("pass " + this->strMailPassword + "\r\n").c_str());//邮箱密码
     sockReceiveMail.recv_socket();
+    const char *kpcRev = sockReceiveMail.get_recvbuf();
     if (bIsDebug) cout << "Client : send password \n Server ："
-                        << sockReceiveMail.get_recvbuf() << endl;
+                        <<  kpcRev << endl;
+    if (strncmp(kpcRev, "+OK", 3)==0)
+        return true;
+    else
+        return false;
     
-    return true;
 }
 
 // 获取字符串pcTemp第ulTempIndex个字符后面的第一个数字

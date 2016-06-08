@@ -66,10 +66,13 @@ bool CSmtp::bfLoginSmtp()
 	sockSendMail.send_socket(pcfBase64Encode(strMailPassword.c_str()));
 	sockSendMail.send_socket("\r\n");
 	sockSendMail.recv_socket();
+    const char *kpcRev = sockSendMail.get_recvbuf();
 	if ( bIsDebug ) std::cout<< "Client : send password \nServer :"
-	                        <<sockSendMail.get_recvbuf() << std::endl;
-
-	return true;
+	                        << kpcRev << std::endl;
+    if (strcmp(kpcRev, "235 Authentication successful\r\n")==0)
+        return true;
+    else
+        return false;
 }
 
 bool CSmtp::bfSendMail(string strFromName, string strToMailAddress, string strTitle, string strContent)
@@ -97,7 +100,6 @@ bool CSmtp::bfSendMail(string strFromName, string strToMailAddress, string strTi
     // 发送邮件主题（subject）
     sockSendMail.send_socket(( string("From: ")+strFromName+string("<")+strMailAddress+string(">")+string("\r\n") ).c_str());
     sockSendMail.send_socket(( string("To: ")+strToMailAddress+string("\r\n") ).c_str());
-    sockSendMail.send_socket(( string("Subject: ")+strTitle+string("\r\n") ).c_str());
     sockSendMail.send_socket(( string("Subject: ")+strTitle+string("\r\n\r\n") ).c_str());
     
 //    sockSendMail.send_socket("MIME-Version: 1.0\r\n");
@@ -106,13 +108,17 @@ bool CSmtp::bfSendMail(string strFromName, string strToMailAddress, string strTi
     sockSendMail.send_socket(( strContent+string("\r\n \r\n") ).c_str());
     sockSendMail.send_socket(".\r\n");
     sockSendMail.recv_socket();
+    const char *kpcRev = sockSendMail.get_recvbuf();
     if ( bIsDebug ) std::cout<< "Client : send content \nServer :"
-    << sockSendMail.get_recvbuf() <<std::endl;
-    
+                            << kpcRev <<std::endl;
     // 断开和服务器的连接
     sockSendMail.send_socket("quit\r\n");
     sockSendMail.recv_socket();
     if ( bIsDebug ) std::cout<< "Client : send quit \nServer :"
-    << sockSendMail.get_recvbuf() <<std::endl;
+                            << sockSendMail.get_recvbuf() <<std::endl;
+//    if (strncmp(kpcRev, "250 Mail OK", 11)==0)
+//        return true;
+//    else
+//        return false;
     return true;
 }

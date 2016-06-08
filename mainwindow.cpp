@@ -7,15 +7,20 @@ void MainWindow::slotLoginCheck()
     std::string strAccount = ui->username->text().toStdString();
     std::string strPassword = ui->password->text().toStdString();
     CPop3 pop3Test(strAccount, strPassword, bIsDebug);
+    if (strAccount.compare("")==0) {
+        QMessageBox::warning(this, tr("Waring"), tr("please input your e-mail address!"), QMessageBox::Yes);
+        return;
+    }
+    if (strPassword.compare("")==0) {
+        QMessageBox::warning(this, tr("Waring"), tr("please input your password!"), QMessageBox::Yes);
+        return;
+    }
     if ( pop3Test.bfLoginPop3() ) {
         if (bIsDebug) std::cout << "login successful!\n";
         emit sigLoginSuccessful(strAccount, strPassword);
     }
-    else {
-        QMessageBox::warning(this, tr("Waring"),
-                             tr("user name or password error!"),
-                             QMessageBox::Yes);
-    }
+    else
+        QMessageBox::warning(this, tr("Waring"), tr("user name or password error!"), QMessageBox::Yes);
 }
 
 void MainWindow::slotClose()

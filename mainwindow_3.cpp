@@ -37,6 +37,8 @@ void MainWindow_3::slotSendMail()
         else
             QMessageBox::warning(this, tr("Waring"), tr("发送邮件失败！"), QMessageBox::Yes);
     }
+    else
+        QMessageBox::warning(this, tr("Waring"), tr("与服务器的连接断开！"), QMessageBox::Yes);
 }
 
 MainWindow_3::MainWindow_3(bool bIsDebug, QWidget *parent) :

@@ -38,6 +38,8 @@ void MainWindow_2::slotRevMail()
 //    }
     if ( pop3Test.bfLoginPop3() )
         pmailRev = pop3Test.pmailfReceiveMail(ulMailRevN);
+    else
+        QMessageBox::warning(this, tr("Waring"), tr("与服务器的连接断开！"), QMessageBox::Yes);
     for (ulIndex=0; ulIndex<ulMailRevN; ulIndex++) {
         if (bIsDebug) std::cout << QString(QString::fromLocal8Bit(pmailRev[ulIndex].strfInfo().c_str())).toStdString();
         ui->revMail_list->addItem(QString(QString::fromLocal8Bit(pmailRev[ulIndex].strfInfo().c_str())));
