@@ -8,10 +8,31 @@
 
 #include "CSmtp.h"
 
+string strSmtpGetDomainName(string strAccount)
+{
+    size_t ulStart;
+    ulStart = strAccount.find('@') + 1;
+    return strAccount.substr(ulStart, strAccount.length());
+}
+
+CSmtp::CSmtp(string strAddress, string strAassword, bool bIsDebug)
+{
+    this->strMailAddress = strAddress;
+    this->strMailPassword = strAassword;
+    this->bIsDebug = bIsDebug;
+    string strDomainName = strSmtpGetDomainName(strAddress);
+    strSmtp = "smtp."+strDomainName;
+    if ( strDomainName.compare("exmail.qq.com")==0 ||
+        strDomainName.compare("gmail.com")==0) {
+        sSmtpPort = 587;
+    }
+    else
+        sSmtpPort = 25; // smtp协议专用端口
+}
+
 bool CSmtp::bfLoginSmtp()
 {
-	if ( bIsDebug ) std::cout<< strSmtp.c_str();
-	int16_t sSmtpPort = 25; // smtp协议专用端口
+	if ( bIsDebug ) std::cout<< strSmtp << sSmtpPort;
     
     // 连接服务器
 	if(sockSendMail.Connect(strSmtp.c_str(), sSmtpPort) == false)
@@ -73,10 +94,15 @@ bool CSmtp::bfSendMail(string strFromName, string strToMailAddress, string strTi
     if ( bIsDebug ) std::cout<< "Client : send data \nServer :"
     <<sockSendMail.get_recvbuf() << std::endl;
     
-    // 发送邮件主体部分，先是邮件主题（subject）,后面是邮件内容
+    // 发送邮件主题（subject）
     sockSendMail.send_socket(( string("From: ")+strFromName+string("<")+strMailAddress+string(">")+string("\r\n") ).c_str());
     sockSendMail.send_socket(( string("To: ")+strToMailAddress+string("\r\n") ).c_str());
+    sockSendMail.send_socket(( string("Subject: ")+strTitle+string("\r\n") ).c_str());
     sockSendMail.send_socket(( string("Subject: ")+strTitle+string("\r\n\r\n") ).c_str());
+    
+//    sockSendMail.send_socket("MIME-Version: 1.0\r\n");
+    
+    // 发送邮件内容
     sockSendMail.send_socket(( strContent+string("\r\n \r\n") ).c_str());
     sockSendMail.send_socket(".\r\n");
     sockSendMail.recv_socket();

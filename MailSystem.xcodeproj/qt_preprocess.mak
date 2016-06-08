@@ -40,7 +40,9 @@ compiler_moc_header_make_all: moc_mainwindow.cpp moc_mainwindow_2.cpp moc_mainwi
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_mainwindow_2.cpp moc_mainwindow_3.cpp
 moc_mainwindow.cpp: ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
+		../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
 		../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMessageBox \
+		../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmessagebox.h \
 		CPop3.h \
 		CSock.h \
 		Transcoding.h \
@@ -49,7 +51,9 @@ moc_mainwindow.cpp: ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Version
 	/Users/meteor/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) mainwindow.h -o moc_mainwindow.cpp
 
 moc_mainwindow_2.cpp: ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
+		../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
 		../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMessageBox \
+		../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmessagebox.h \
 		CMail.h \
 		CPop3.h \
 		CSock.h \
@@ -58,7 +62,9 @@ moc_mainwindow_2.cpp: ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versi
 	/Users/meteor/Qt5.2.1/5.2.1/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 $(INCPATH) mainwindow_2.h -o moc_mainwindow_2.cpp
 
 moc_mainwindow_3.cpp: ../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMainWindow \
+		../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmainwindow.h \
 		../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/QMessageBox \
+		../../Qt5.2.1/5.2.1/clang_64/lib/QtWidgets.framework/Versions/5/Headers/qmessagebox.h \
 		CSmtp.h \
 		CSock.h \
 		Transcoding.h \

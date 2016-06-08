@@ -8,6 +8,28 @@
 
 #include "CPop3.h"
 
+string strPop3GetDomainName(string strAccount)
+{
+    size_t ulStart;
+    ulStart = strAccount.find('@') + 1;
+    return strAccount.substr(ulStart, strAccount.length());
+}
+
+CPop3::CPop3(string strAccount, string strPassword, bool bIsDebug)
+{
+    this->strMailAddress = strAccount;
+    this->strMailPassword = strPassword;
+    this->bIsDebug = bIsDebug;
+    string strDomainName = strPop3GetDomainName(strAccount);
+    strPop3 = "pop3."+strDomainName;
+    if ( strDomainName.compare("exmail.qq.com")==0 ||
+        strDomainName.compare("gmail.com")==0) {
+        sPop3Port = 995;
+    }
+    else
+        sPop3Port = 110; // smtp协议专用端口
+}
+
 bool CPop3::bfLoginPop3()
 {
     if (bIsDebug) cout<< strPop3.c_str();
@@ -276,7 +298,7 @@ CMail *CPop3::pmailfReceiveMail(size_t &ulRevMailNum)
         }
         
         // 分析邮件内容，提取出发件人，收件人，标题，正文等
-        if (bIsDebug) cout << strRevMailContent << endl;
+        cout << strRevMailContent << endl;
         vGetMailInfo(pmailRev[lIndex], strRevMailContent, ulRevMailSize[lIndex] + 3);
         if (bIsDebug) cout << "mail " << lIndex+1 << ":" << endl;
         if (bIsDebug) pmailRev[lIndex].vShowMail();

@@ -17,12 +17,7 @@ using  namespace std;
 class CSmtp
 {
 public:
-    CSmtp(string strAddress, string strAassword, bool bIsDebug){
-        string strSmtp = "smtp.163.com";
-        this->strSmtp = strSmtp;
-        this->strMailAddress = strAddress;
-        this->strMailPassword = strAassword;
-        this->bIsDebug = bIsDebug;};
+    CSmtp(string strAddress, string strAassword, bool bIsDebug);
     ~CSmtp(){
         sockSendMail.~CSock();};
     
@@ -42,6 +37,7 @@ private:
     string strMailAddress; // 邮箱地址
     string strMailPassword; // 邮箱密码
     string strSmtp; // smtp服务器地址
+    int16_t sSmtpPort; // smtp服务器端口号
     CSock sockSendMail; // 发送邮件的套接字
 };
 #endif /* CSmtp.h */

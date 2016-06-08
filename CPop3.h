@@ -18,11 +18,7 @@ using  namespace std;
 class CPop3
 {
 public:
-    CPop3(string strAccount, string strPassword, bool bIsDebug){
-        this->strPop3 = "pop3.163.com";
-        this->strMailAddress = strAccount;
-        this->strMailPassword = strPassword;
-        this->bIsDebug = bIsDebug;};
+    CPop3(string strAccount, string strPassword, bool bIsDebug);
     ~CPop3(){
         sockReceiveMail.~CSock();};
     
@@ -40,6 +36,7 @@ private:
     string strMailAddress; // 邮箱地址
     string strMailPassword; // 邮箱密码
     string strPop3; // smtp服务器地址
+    int16_t sPop3Port; // smtp服务器端口号
     CSock sockReceiveMail; // 接收邮件的套接字
 };
 #endif /* CPop3.h */

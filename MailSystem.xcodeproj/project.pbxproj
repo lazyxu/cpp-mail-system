@@ -42,7 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		00E4FE4F1D0703850083BB38 /* PBXContainerItemProxy */ = {
+		00A975CC1D083098005F516D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6DB9C3763D02B1415CD9D565 /* Project object */;
 			proxyType = 1;
@@ -535,7 +535,7 @@
 		793A73284AC1E559AB455A0D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C00B60F5C268E05FF32A9A48 /* Qt Preprocess */;
-			targetProxy = 00E4FE4F1D0703850083BB38 /* PBXContainerItemProxy */;
+			targetProxy = 00A975CC1D083098005F516D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

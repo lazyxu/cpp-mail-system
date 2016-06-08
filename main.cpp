@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     
 //    qt图形界面
     QApplication a(argc, argv); // 创建一个qt应用
-    bool bIsDebug = false; // 是否输出调试信息
+    bool bIsDebug = true; // 是否输出调试信息
     MainWindow wLoginWindow(bIsDebug); // 创建登录界面
     wLoginWindow.show(); // 显示登录界面
     MainWindow_2 wMainWindow(bIsDebug); // 创建主界面
